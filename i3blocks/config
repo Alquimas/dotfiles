@@ -1,0 +1,58 @@
+# i3blocks config file
+#
+# Please see man i3blocks for a complete reference!
+# The man page is also hosted at http://vivien.github.io/i3blocks
+#
+# List of valid properties:
+#
+# align
+# color
+# command
+# full_text
+# instance
+# interval
+# label
+# min_width
+# name
+# separator
+# separator_block_width
+# short_text
+# signal
+# urgent
+
+# Global properties
+#
+# The top properties below are applied to every block, but can be overridden.
+# Each block command defaults to the script name to avoid boilerplate.
+# Change $SCRIPT_DIR to the location of your scripts!
+command=$SCRIPT_DIR/$BLOCK_NAME
+color=#181836
+separator_block_width=8
+markup=pango
+align=center
+
+[date]
+command=echo "<span background='#1430cc' foreground='#ffffff' size='large'>󰃭 $(date '+%d-%m-%Y')</span>"
+interval=60
+
+[battery2]
+command=echo "<span background='#1430cc' foreground='#181836' size='x-large'></span><span background='#181836' foreground='#ffffff' size='large'>$(~/.config/i3blocks/scripts/battery2/battery2)</span><span background='#181836' foreground='#1430cc' size='x-large'></span>"
+interval=30
+
+[volume-pulseaudio]
+command=echo "<span background='#1430cc' foreground='#ffffff' size='large'>$(~/.config/i3blocks/scripts/volume-pulseaudio/volume-pulseaudio)</span>"
+#command=~/.config/i3blocks/scripts/volume-pulseaudio/volume-pulseaudio
+interval=1
+signal=1
+
+[memory]
+command=echo "<span background='#1430cc' foreground='#181836' size='x-large'></span><span background='#181836' foreground='#ffffff' size='large'>󰍛 $(~/.config/i3blocks/scripts/memory/memory)</span><span background='#181836' foreground='#1430cc' size='x-large'></span>"
+interval=5
+
+[cpu]
+command=echo "<span background='#1430cc' foreground='#ffffff' size='large'>󰻠 $(sar -u 1 1 | awk 'FNR == 5 { printf "%04.1f%", (100 - $8) } ')</span>"
+interval=1
+
+[time]
+command=echo "<span background='#1430cc' foreground='#181836' size='x-large'></span><span background='#181836' foreground='#ffffff' size='large'> $(date '+%H:%M')</span><span background='#181836' foreground='#1430cc' size='x-large'></span>"
+interval=10

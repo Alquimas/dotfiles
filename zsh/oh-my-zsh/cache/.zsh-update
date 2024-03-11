@@ -1,0 +1,10 @@
+LAST_EPOCH=19792
+EXIT_STATUS=1
+ERROR='error: Your local changes to the following files would be overwritten by merge:
+	plugins/gitfast/update
+	tools/changelog.sh
+	tools/install.sh
+	tools/upgrade.sh
+Please commit your changes or stash them before you merge.
+Aborting
+There was an error updating. Try again later?'
