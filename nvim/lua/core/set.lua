@@ -87,6 +87,8 @@ local opts = {
     -- caracteres especiais ativados no regexp
     magic = true,
 
+    -- sempre mostra a signcolumn, mesmo sem conteudo
+    signcolumn = 'yes',
 }
 
 for k, v in pairs(opts) do
