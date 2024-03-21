@@ -22,10 +22,10 @@ alias :q="exit"
 alias :clear="clear"
 
 path+=("$HOME/.cargo/bin")
-path+=("$HOME/Programacao/Zig/zig-linux-x86_64-0.12.0-dev.2063+804cee3b9")
 [ -f "/home/alquimas/.ghcup/env" ] && source "/home/alquimas/.ghcup/env" # ghcup-env
 . "$HOME/.asdf/asdf.sh"
 . "$HOME/.asdf/completions/asdf.bash"
+path+=("$HOME/zig/zig-linux-x86_64-0.12.0-dev.3336+dbb11915b")
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
