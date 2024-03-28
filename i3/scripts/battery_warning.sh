@@ -17,7 +17,7 @@ while true; do
     if [[ ${STATUS} = "Discharging" ]]; then
         if [[ ${CAPACITY} -le ${NEXT_PING} ]]; then
             paplay "${SOUND}" &
-            notify-send -t 8000 -u critical "Low Battery" "${NEXT_MESSAGE}"
+            dunstify "Low Battery" "${NEXT_MESSAGE}"
 
             if [[ -z "${POPUP_SEEN}" ]]; then
                 POPUP_SEEN="s"
