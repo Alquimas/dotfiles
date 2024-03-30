@@ -7,7 +7,7 @@ return {
         local opts = {
             options = {
                 icons_enabled = true,
-                theme = 'ayu_mirage',
+                theme = 'onedark',
                 component_separators = { left = '', right = '' },
                 section_separators = { left = '', right = '' },
                 disabled_filetypes = {
@@ -36,12 +36,6 @@ return {
                         },
                         always_visible = true,
                         colored = true,
-                        diagnostics_color = {
-                            error = 'DiagnosticError',
-                            warn  = 'DiagnosticWarn',
-                            info  = 'DiagnosticInfo',
-                            hint  = 'DiagnosticHint',
-                        },
                     },
                 },
                 lualine_c = {},

@@ -44,11 +44,11 @@ local opts = {
     },
     install = {
         colorscheme = {
-            "oxocarbon",
+            "onedark",
         },
     },
 }
 
 require("lazy").setup("plugins", opts)
 
-vim.cmd("colorscheme oxocarbon")
+vim.cmd("colorscheme onedark")
