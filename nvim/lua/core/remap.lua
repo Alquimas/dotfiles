@@ -59,6 +59,11 @@ local normal = {
 
     -- copiar para o clipboard do computador
     ["leader>y"] = { [["+y]], "Copy to plus register" },
+
+    -- remap for c-a (increase number)
+    -- and c-z (decrease number)
+    ["-"] = "<C-x>",
+    ["+"] = "<C-a>",
 }
 
 local insert = {

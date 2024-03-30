@@ -23,12 +23,16 @@ alias :clear="clear"
 
 path+=("$HOME/.cargo/bin")
 [ -f "/home/alquimas/.ghcup/env" ] && source "/home/alquimas/.ghcup/env" # ghcup-env
-. "$HOME/.asdf/asdf.sh"
-. "$HOME/.asdf/completions/asdf.bash"
 path+=("$HOME/zig/zig-linux-x86_64-0.12.0-dev.3336+dbb11915b")
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-if [ -x "$(command -v tmux)" ] && [ -n "${DISPLAY}" ] && [ -z "${TMUX}" ]; then
-    exec tmux new-session -A -s ${USER} >/dev/null 2>&1
-fi
+. "$HOME/.asdf/asdf.sh"
+# append completions to fpath
+fpath+=(${ASDF_DIR}/completions $fpath)
+# initialise completions with ZSH's compinit
+autoload -Uz compinit && compinit
+
+#if [ -x "$(command -v tmux)" ] && [ -n "${DISPLAY}" ] && [ -z "${TMUX}" ]; then
+#    exec tmux new-session -A -s ${USER} >/dev/null 2>&1
+#fi
