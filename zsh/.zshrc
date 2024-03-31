@@ -3,6 +3,7 @@ plugins=(git fancy-ctrl-z)
 export ZSH="$ZDOTDIR/oh-my-zsh"
 
 ZSH_THEME="half-life" # set by `omz`
+XDG_PICTURES_DIR=${HOME}/Imagens/codeshots
 
 export ZSH_COMPDUMP=${HOME}/.zcompdump-${HOST}
 source $ZSH/oh-my-zsh.sh
