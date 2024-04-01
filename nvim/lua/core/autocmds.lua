@@ -52,16 +52,6 @@ autocmd({ "BufLeave", "FocusLost", "InsertEnter" }, {
     end,
 })
 
-local startup = augroup("Startup", {})
-autocmd({ "VimEnter" }, {
-    group = startup,
-    desc = "When entering vim, open nvimtree",
-    pattern = "*",
-    callback = function ()
-        require("nvim-tree.api").tree.open()
-    end,
-})
-
 --[[
 local get_indent = augroup("GetIndent", {clear = true})
 autocmd("BufReadPre", {

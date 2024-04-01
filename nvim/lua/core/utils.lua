@@ -30,4 +30,9 @@ M.set_curdir = function()
     vim.api.nvim_set_current_dir(curdir)
 end
 
+M.custom_fold_text = function ()
+    local line_count = vim.v.foldend - vim.v.foldstart + 1
+    return " ⚡ Lines folded: " .. line_count
+end
+
 return M

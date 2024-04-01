@@ -1,12 +1,13 @@
-plugins=(git fancy-ctrl-z)
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.dotfiles/zsh/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
 
-export ZSH="$ZDOTDIR/oh-my-zsh"
-
-ZSH_THEME="half-life" # set by `omz`
 XDG_PICTURES_DIR=${HOME}/Imagens/codeshots
 
 export ZSH_COMPDUMP=${HOME}/.zcompdump-${HOST}
-source $ZSH/oh-my-zsh.sh
 
 # Histórico:
 export HISTFILE=${HOME}/.zsh_history
@@ -34,6 +35,13 @@ fpath+=(${ASDF_DIR}/completions $fpath)
 # initialise completions with ZSH's compinit
 autoload -Uz compinit && compinit
 
-#if [ -x "$(command -v tmux)" ] && [ -n "${DISPLAY}" ] && [ -z "${TMUX}" ]; then
-#    exec tmux new-session -A -s ${USER} >/dev/null 2>&1
-#fi
+if [ -x "$(command -v tmux)" ] && [ -n "${DISPLAY}" ] && [ -z "${TMUX}" ]; then
+    exec tmux new-session -A -s ${USER} >/dev/null 2>&1
+fi
+
+source ~/.config/zsh/powerlevel10k/powerlevel10k.zsh-theme
+
+# To customize prompt, run `p10k configure` or edit ~/.dotfiles/zsh/.p10k.zsh.
+[[ ! -f ~/.dotfiles/zsh/.p10k.zsh ]] || source ~/.dotfiles/zsh/.p10k.zsh
+
+source ~/.dotfiles/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh

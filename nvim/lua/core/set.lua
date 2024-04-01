@@ -2,7 +2,6 @@
 vim.g.mapleader = " "
 
 local opts = {
-
     list = true,
     title = true,
     --ativa o acesso do nvim ao clipboard do sistema
@@ -79,10 +78,12 @@ local opts = {
     -- um folding basico eh melhor que folding nenhum
     foldmethod = "indent",
     fillchars = {
-        fold = " "
+        fold = " ",
     },
-    foldenable = false,
+    foldenable = true,
     foldlevel = 99,
+    foldminlines = 1,
+    foldtext = 'v:lua.utils.custom_fold_text()',
 
     -- caracteres especiais ativados no regexp
     magic = true,
