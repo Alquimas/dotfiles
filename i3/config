@@ -1,23 +1,8 @@
+# Default modkey
 set $mod Mod4
 
-# Font for window titles. Will also be used by the bar unless a different font
-# is used in the bar {} block below.
+# Font for window titles.
 font pango:Fira Mono 10
-
-# Start XDG autostart .desktop files using dex. See also
-# https://wiki.archlinux.org/index.php/XDG_Autostart
-exec --no-startup-id dex --autostart --environment i3
-
-# The combination of xss-lock, nm-applet and pactl is a popular choice, so
-# they are included here as an example. Modify as you see fit.
-
-# xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
-# screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock --i3lock --nofork
-
-# NetworkManager is the most popular way to manage wireless networks on Linux,
-# and nm-applet is a desktop environment-independent system tray GUI for it.
-exec --no-startup-id nm-applet
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -28,7 +13,7 @@ bindsym $mod+Return exec qterminal
 # kill focused window
 bindsym $mod+Shift+q kill
 
-# start dmenu (a program launcher)
+# start dmenu rofi
 bindsym $mod+d exec --no-startup-id exec rofi -show drun
 
 # change focused windows
@@ -73,6 +58,9 @@ bindsym $mod+space focus mode_toggle
 
 # focus the parent container
 bindsym $mod+a focus parent
+
+# set a window to stick to the glass
+bindsym $mod+Shift+s sticky toggle
 
 # focus the child container
 # bindsym $mod+d focus child
@@ -213,10 +201,13 @@ bindsym Shift+Print exec ~/.config/i3/scripts/screenshot.sh -cw
 bindsym $mod+Print exec ~/.config/i3/scripts/screenshot.sh -c
 
 # startup aplicattions
-exec --no-startup-id feh --bg-fill ~/.config/i3/wallpaper.png
-exec --no-startup-id redshift -x
-exec --no-startup-id $HOME/.config/i3/scripts/battery_warning.sh
-exec --no-startup-id dunst
+exec_always --no-startup-id feh --bg-fill ~/.config/i3/wallpaper.png
+exec_always --no-startup-id redshift -x
+exec_always --no-startup-id $HOME/.config/i3/scripts/battery_warning.sh
+exec_always --no-startup-id dunst
+exec_always --no-startup-id nm-applet
+exec_always --no-startup-id xautolock -time 10 -locker "i3lock-fancy -gp"
+exec_always --no-startup-id xss-lock -- i3lock-fancy -gp
 
 # simple menu to exit, logoff, suspend, etc
 
@@ -225,12 +216,12 @@ bindsym $mod+Escape mode "$mode_system"
 set $mode_system System (k) lock, (l) logout, (u) suspend, (h) hibernate, (r) reboot, (s) shutdown
 mode "$mode_system" {
 
-    bindsym k exec --no-startup-id ~/.config/i3blocks/scripts/i3exit/i3exit lock, mode "default"
-    bindsym l exec --no-startup-id ~/.config/i3blocks/scripts/i3exit/i3exit logout, mode "default"
-    bindsym u exec --no-startup-id ~/.config/i3blocks/scripts/i3exit/i3exit suspend, mode "default"
-    bindsym h exec --no-startup-id ~/.config/i3blocks/scripts/i3exit/i3exit hibernate, mode "default"
-    bindsym r exec --no-startup-id ~/.config/i3blocks/scripts/i3exit/i3exit reboot, mode "default"
-    bindsym s exec --no-startup-id ~/.config/i3blocks/scripts/i3exit/i3exit shutdown, mode "default"
+    bindsym k exec --no-startup-id ~/.config/i3/scripts/i3power.sh lock, mode "default"
+    bindsym l exec --no-startup-id ~/.config/i3/scripts/i3power.sh logout, mode "default"
+    bindsym u exec --no-startup-id ~/.config/i3/scripts/i3power.sh suspend, mode "default"
+    bindsym h exec --no-startup-id ~/.config/i3/scripts/i3power.sh hibernate, mode "default"
+    bindsym r exec --no-startup-id ~/.config/i3/scripts/i3power.sh reboot, mode "default"
+    bindsym s exec --no-startup-id ~/.config/i3/scripts/i3power.sh shutdown, mode "default"
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"

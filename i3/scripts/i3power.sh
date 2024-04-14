@@ -2,13 +2,13 @@
 
 case "$1" in
     lock)
-        i3lock -i ~/.config/i3/lockscreen.png
+        i3lock-fancy -gp
         ;;
     logout)
         i3-msg exit
         ;;
     suspend)
-        i3lock -i ~/.config/i3/lockscreen.png && systemctl suspend
+        systemctl suspend
         ;;
     hibernate)
         systemctl hibernate

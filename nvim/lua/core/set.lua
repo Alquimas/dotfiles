@@ -13,7 +13,7 @@ local opts = {
 
     --se a linha chegar no fim da tela, quebra e mostra ++ na próxima pra
     --que continua na atual
-    wrap = false,
+    wrap = true,
     showbreak = '++',
 
     --ativa os numeros e a numeraçao relativa
