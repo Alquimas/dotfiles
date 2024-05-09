@@ -32,6 +32,7 @@ path+=("$HOME/zig/zig-linux-x86_64-0.12.0-dev.3336+dbb11915b")
 . "$HOME/.asdf/asdf.sh"
 # append completions to fpath
 fpath+=(${ASDF_DIR}/completions $fpath)
+path+=(${HOME}/.local/bin)
 # initialise completions with ZSH's compinit
 autoload -Uz compinit && compinit
 
@@ -45,3 +46,5 @@ source ~/.config/zsh/powerlevel10k/powerlevel10k.zsh-theme
 [[ ! -f ~/.dotfiles/zsh/.p10k.zsh ]] || source ~/.dotfiles/zsh/.p10k.zsh
 
 source ~/.dotfiles/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+eval "$(fzf --zsh)"
