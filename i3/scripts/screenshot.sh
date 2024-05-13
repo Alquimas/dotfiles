@@ -25,7 +25,7 @@ while getopts 'cwapd:' opt; do
     esac
 done
 
-IMAGE=${HOME}/Imagens/screenshots/screenshot_from_$(date +%Y_%m_%d-%T).png
+IMAGE=${HOME}/Pictures/screenshots/screenshot_from_$(date +%Y_%m_%d-%T).png
 
 if [[ -n ${TO_CLIPBOARD} ]]; then
     TO_CLIPBOARD="cat ${IMAGE} | xclip -i -selection clipboard -target image/png"

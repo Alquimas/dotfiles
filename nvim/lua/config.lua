@@ -47,6 +47,8 @@ servers.asm_lsp = {
 
 servers.fortls = {}
 
+servers.serve_d = {}
+
 M.servers = servers
 
 return M

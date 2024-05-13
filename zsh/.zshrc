@@ -29,10 +29,11 @@ path+=("$HOME/zig/zig-linux-x86_64-0.12.0-dev.3336+dbb11915b")
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-. "$HOME/.asdf/asdf.sh"
+# . "$HOME/.asdf/asdf.sh"
 # append completions to fpath
-fpath+=(${ASDF_DIR}/completions $fpath)
+#fpath+=(${ASDF_DIR}/completions $fpath)
 path+=(${HOME}/.local/bin)
+path+=(${HOME}/parsers/d_lang/compiler)
 # initialise completions with ZSH's compinit
 autoload -Uz compinit && compinit
 

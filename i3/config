@@ -8,7 +8,7 @@ font pango:Fira Mono 10
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec alacritty
+bindsym $mod+Return exec --no-startup-id /home/alquimas/.cargo/bin/alacritty
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -222,7 +222,7 @@ bindsym $mod+Print exec ~/.config/i3/scripts/screenshot.sh -c
 
 # startup aplicattions
 exec --no-startup-id feh --bg-fill ~/.config/i3/wallpaper.jpg
-exec --no-startup-id redshift -x
+exec --no-startup-id redshift -O 3000
 exec --no-startup-id $HOME/.config/i3/scripts/battery_warning.sh
 exec --no-startup-id dunst
 exec --no-startup-id nm-applet
@@ -232,20 +232,4 @@ exec_always --no-startup-id picom
 
 # simple menu to exit, logoff, suspend, etc
 
-bindsym $mod+Escape mode "$mode_system"
-
-set $mode_system System (k) lock, (l) logout, (u) suspend, (h) hibernate, (r) reboot, (s) shutdown
-mode "$mode_system" {
-
-    bindsym k exec --no-startup-id ~/.config/i3/scripts/i3power.sh lock, mode "default"
-    bindsym l exec --no-startup-id ~/.config/i3/scripts/i3power.sh logout, mode "default"
-    bindsym u exec --no-startup-id ~/.config/i3/scripts/i3power.sh suspend, mode "default"
-    bindsym h exec --no-startup-id ~/.config/i3/scripts/i3power.sh hibernate, mode "default"
-    bindsym r exec --no-startup-id ~/.config/i3/scripts/i3power.sh reboot, mode "default"
-    bindsym s exec --no-startup-id ~/.config/i3/scripts/i3power.sh shutdown, mode "default"
-
-    # back to normal: Enter or Escape
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
-
+bindsym $mod+Escape exec rofi -show p -modi p:'~/.config/i3/scripts/rofi-power-menu.sh'
