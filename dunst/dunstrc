@@ -15,7 +15,7 @@
     horizontal_padding = 10
     text_icon_padding = 0
     frame_width = 1
-    frame_color = "#232323"
+    frame_color = "#89b4fa"
     gap_size = 0
     separator_color = frame
     sort = yes
@@ -48,20 +48,20 @@
     mouse_right_click = close_all
 
 [urgency_low]
-    background = "#232323"
-    foreground = "#a8a8a8"
+    background = "#1e1e2e"
+    foreground = "#cdd6f4"
     timeout = 10
 
 [urgency_normal]
-    background = "#232323"
-    foreground = "#a8a8a8"
+    background = "#1e1e2e"
+    foreground = "#cdd6f4"
     timeout = 10
     override_pause_level = 30
 
 [urgency_critical]
-    background = "#d64e4e"
-    foreground = "#f0e0e0"
-    frame_color = "#d64e4e"
+    background = "#1e1e2e"
+    foreground = "#cdd6f4"
+    frame_color = "#fab387"
     timeout = 0
     override_pause_level = 60
     default_icon = /usr/share/icons/Adwaita/16x16/status/dialog-warning-symbolic.symbolic.png
