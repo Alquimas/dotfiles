@@ -1,5 +1,16 @@
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
 # Inserts a blank line between shell prompts
 add_newline = false
+
+[directory]
+truncation_length = 5
+truncation_symbol = '/'
+read_only = " 󰌾"
+
+[username]
+show_always = true
 
 [aws]
 symbol = "  "
@@ -18,9 +29,6 @@ symbol = " "
 
 [dart]
 symbol = " "
-
-[directory]
-read_only = " 󰌾"
 
 [docker_context]
 symbol = " "

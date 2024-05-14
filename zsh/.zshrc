@@ -30,3 +30,5 @@ eval "$(fzf --zsh)"
 
 export STARSHIP_CONFIG=~/.dotfiles/zsh/starship.toml
 eval "$(starship init zsh)"
+
+fastfetch -c ~/.dotfiles/small_debian.jsonc

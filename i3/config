@@ -8,7 +8,7 @@ font pango:Fira Mono 10
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec --no-startup-id /home/alquimas/.cargo/bin/alacritty
+bindsym $mod+Return exec --no-startup-id ~/.cargo/bin/alacritty
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -61,6 +61,9 @@ bindsym $mod+a focus parent
 
 # set a window to stick to the glass
 bindsym $mod+Shift+s sticky toggle
+
+# pop a dunst notification
+bindsym $mod+Shift+p exec --no-startup-id dunstctl history-pop
 
 # focus the child container
 # bindsym $mod+d focus child
