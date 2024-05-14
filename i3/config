@@ -184,10 +184,6 @@ title_align center
 for_window [class   = "^.*"] border pixel 5
 for_window [title   = "^.*"] border pixel 5
 
-# make Gnome-screenshot open only in floating window mode
-for_window [class = "Gnome-screenshot"] floating enable
-for_window [class = "Nm-connection-editor"] floating enable
-
 # target                 title     bg    text   indicator  border
 client.focused           $lavender $base $text  $rosewater $lavender
 client.focused_inactive  $overlay0 $base $text  $rosewater $overlay0
@@ -195,6 +191,10 @@ client.unfocused         $overlay0 $base $text  $rosewater $overlay0
 client.urgent            $peach    $base $peach $overlay0  $peach
 client.placeholder       $overlay0 $base $text  $overlay0  $overlay0
 client.background        $base
+
+# make Gnome-screenshot open only in floating window mode
+for_window [class = "Gnome-screenshot"] floating enable
+for_window [class = "Nm-connection-editor"] floating enable
 
 # gaps between windons
 gaps inner 3
@@ -231,5 +231,4 @@ exec --no-startup-id xss-lock -- i3lock-fancy -gp
 exec_always --no-startup-id picom
 
 # simple menu to exit, logoff, suspend, etc
-
 bindsym $mod+Escape exec rofi -show p -modi p:'~/.config/i3/scripts/rofi-power-menu.sh'

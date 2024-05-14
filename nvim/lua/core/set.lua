@@ -59,14 +59,10 @@ local opts = {
         space = "·",
     },
 
-    --sempre mostra as 15 primeiras/ultimas linhas, exceto se for começo/fim do
+    --sempre mostra as 10 primeiras/ultimas linhas, exceto se for começo/fim do
     --documento
-    scrolloff = 15,
-    sidescrolloff = 15,
-
-    --máximo de 80 caracteres por linha, se ultrapassar automaticamente dá
-    --enter no ultimo espaço
-    textwidth = 80,
+    scrolloff = 10,
+    sidescrolloff = 10,
 
     --eu preciso ver onde o texto quebra, nao me julgue
     colorcolumn = "81",
