@@ -58,7 +58,7 @@ local normal = {
     ["<C-w>p"] = { "<C-w>p", "Previous split" },
 
     -- copiar para o clipboard do computador
-    ["leader>y"] = { [["+y]], "Copy to plus register" },
+    ["<leader>y"] = { [["+y]], "Copy to plus register" },
 
     -- remap for c-a (increase number)
     -- and c-z (decrease number)

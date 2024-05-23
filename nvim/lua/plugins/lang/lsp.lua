@@ -29,6 +29,9 @@ return {
                 source = "always",
                 focusable = false,
             },
+            inlay_hints = {
+                enabled = true,
+            },
         })
 
 --local lspconfig = require('lspconfig')

@@ -198,6 +198,7 @@ client.background        $base
 # make Gnome-screenshot open only in floating window mode
 for_window [class = "Gnome-screenshot"] floating enable
 for_window [class = "Nm-connection-editor"] floating enable
+for_window [class = "Viewnior"] floating enable
 
 # gaps between windons
 gaps inner 3
@@ -219,9 +220,9 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 3 # decrease screen brightnes
 bindsym XF86AudioMicMute exec --no-startup-id amixer set Capture toggle
 
 #interactive screenshot by pressing printscreen
-bindsym Print exec ~/.config/i3/scripts/screenshot.sh -ca
-bindsym Shift+Print exec ~/.config/i3/scripts/screenshot.sh -cw
-bindsym $mod+Print exec ~/.config/i3/scripts/screenshot.sh -c
+bindsym Print exec ~/.config/i3/scripts/takeScreenshot.sh -t area
+bindsym Shift+Print exec ~/.config/i3/scripts/takeScreenshot.sh -t window
+bindsym $mod+Print exec ~/.config/i3/scripts/takeScreenshot.sh -t all
 
 # startup aplicattions
 exec --no-startup-id feh --bg-fill ~/.config/i3/wallpaper.jpg

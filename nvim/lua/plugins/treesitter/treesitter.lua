@@ -13,9 +13,8 @@ return {
             "query",
             "java",
             "haskell",
-            "latex",
             "elixir",
-            "nasm"
+            "markdown",
         },
         incremental_selection = {
             enable = true,
@@ -28,7 +27,6 @@ return {
         auto_install = true,
         highlight = {
             enable = true,
-            use_languagetree = true,
         },
         indent = {
             enable = false,

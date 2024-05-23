@@ -18,9 +18,14 @@ alias :clear="clear"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-path+=("$HOME/.cargo/bin")
+path+=(${HOME}/.cargo/bin)
 path+=(${HOME}/.local/bin)
 path+=(${HOME}/parsers/d_lang/compiler)
+
+#asdf
+. "${HOME}/.asdf/asdf.sh"
+# append completions to fpath
+fpath=(${ASDF_DIR}/completions $fpath)
 # initialise completions with ZSH's compinit
 autoload -Uz compinit && compinit
 
