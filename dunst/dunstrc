@@ -66,7 +66,6 @@
     override_pause_level = 60
     default_icon = /usr/share/icons/Adwaita/16x16/status/dialog-warning-symbolic.symbolic.png
 
-
-[timer_ignore]
-    appname = timer
+[popup_ignore]
+    appname = popup
     history_ignore = yes

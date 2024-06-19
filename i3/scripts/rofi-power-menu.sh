@@ -47,7 +47,7 @@ actions[reboot]="systemctl reboot"
 actions[shutdown]="systemctl poweroff"
 
 # By default, ask for confirmation for actions that are irreversible
-confirmations=(reboot shutdown logout)
+confirmations=(reboot shutdown logout hibernate)
 
 # By default, no dry run
 dryrun=false
@@ -55,7 +55,6 @@ showsymbols=true
 showtext=true
 
 function check_valid {
-    option="$1"
     shift 1
     for entry in "${@}"
     do
@@ -166,7 +165,7 @@ while true; do
     esac
 done
 
-if [ "$showsymbols" = "false" -a "$showtext" = "false" ]
+if [ "$showsymbols" = "false" ] && [ "$showtext" = "false" ]
 then
     echo "Invalid options: cannot have --no-symbols and --no-text enabled at the same time." >&2
     exit 1

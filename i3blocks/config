@@ -1,58 +1,28 @@
-# i3blocks config file
-#
-# Please see man i3blocks for a complete reference!
-# The man page is also hosted at http://vivien.github.io/i3blocks
-#
-# List of valid properties:
-#
-# align
-# color
-# command
-# full_text
-# instance
-# interval
-# label
-# min_width
-# name
-# separator
-# separator_block_width
-# short_text
-# signal
-# urgent
-
-# Global properties
-#
-# The top properties below are applied to every block, but can be overridden.
-# Each block command defaults to the script name to avoid boilerplate.
-# Change $SCRIPT_DIR to the location of your scripts!
-command=$SCRIPT_DIR/$BLOCK_NAME
-color=#1e1e2e
-separator_block_width=8
-markup=pango
+separator_block_width=12
+markup=none
 align=center
 
 [date]
-command=echo "<span background='#313244' foreground='#a6adc8' size='large'>󰃭 $(date '+%d-%m-%Y')</span>"
+command=echo -n '󰃭 '; date '+%a, %d %b, %H:%M'
 interval=60
 
 [battery2]
-command=echo "<span background='#1e1e2e' foreground='#cdd6f4' size='large'>$(~/.config/i3blocks/scripts/battery2/battery2)</span>"
+command=~/.config/i3blocks/scripts/battery2/battery2
 interval=30
 
 [volume-pulseaudio]
-command=echo "<span background='#313244' foreground='#a6adc8' size='large'>$(~/.config/i3blocks/scripts/volume-pulseaudio/volume-pulseaudio)</span>"
-#command=~/.config/i3blocks/scripts/volume-pulseaudio/volume-pulseaudio
+command=~/.config/i3blocks/scripts/volume-pulseaudio/volume-pulseaudio
 interval=1
 signal=1
 
 [memory]
-command=echo "<span background='#1e1e2e' foreground='#cdd6f4' size='large'>󰍛 $(~/.config/i3blocks/scripts/memory/memory)</span>"
+command=echo -n '󰍛 '; ~/.config/i3blocks/scripts/memory/memory
 interval=5
 
 [cpu]
-command=echo "<span background='#313244' foreground='#a6adc8' size='large'>󰻠 $(sar -u 1 1 | awk 'FNR == 5 { printf "%04.1f%", (100 - $8) } ')</span>"
+command=echo -n '󰻠 '; sar -u 1 1 | awk 'FNR == 5 { printf "%04.1f%", (100 - $8) } '
 interval=1
 
-[time]
-command=echo "<span background='#1e1e2e' foreground='#cdd6f4' size='large'> $(date '+%H:%M')</span>"
-interval=10
+[disk-home]
+command=echo -n ' '; df -h -l --output='used' "$HOME" | grep -E -o '[0-9]+G'
+interval=50

@@ -19,11 +19,6 @@ servers.lua_ls = {
 
 servers.hls = {}
 
---[[servers.ltex = {
-    language = { "en-US", "pt-BR" },
-}]]
---
-
 servers.texlab = {}
 
 servers.jdtls = {}

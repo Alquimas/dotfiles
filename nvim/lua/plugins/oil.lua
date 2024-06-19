@@ -14,10 +14,12 @@ return {
         }
         require("oil").setup(opts)
     end,
-    vim.keymap.set(
-        "n",
-        "<leader>x",
-        "<CMD>Oil --float<CR>",
-        {desc = "Open parent directory" }
-    )
+
+    keys = {
+        {
+            "<leader>x",
+            "<cmd>Oil<CR>",
+            {desc = "Open parent directory in Oil"}
+        }
+    },
 }

@@ -4,7 +4,7 @@ return {
     enabled = config.undotree,
     config = function()
         vim.keymap.set('n',
-            '<C-a>',
+            '<C- >',
             vim.cmd.UndotreeToggle,
             { desc = "Undo Tree" }
         )

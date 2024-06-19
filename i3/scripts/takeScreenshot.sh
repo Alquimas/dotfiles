@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
-time=`date +%Y_%m_%d-%T`
-directory="`xdg-user-dir PICTURES`/Screenshots"
+time=$(date +%Y_%m_%d-%T)
+directory="$(xdg-user-dir PICTURES)/Screenshots"
 file="screenshot_from-${time}.png"
-notify_cmd='dunstify -u low -h string:x-dunst-stack-tag:takescreenshot -i ~/.icons/Material-Black-Blueberry-Numix-FLAT/16/mimetypes/image-png.svg Screenshot'
+notify_cmd='dunstify -a "popup" -h string:x-dunst-stack-tag:takescreenshot -i ~/.icons/Material-Black-Blueberry-Numix-FLAT/16/mimetypes/image-png.svg Screenshot'
 
 # if the screenshots directory dont exists,
 # create it
@@ -13,19 +13,19 @@ fi
 
 # notify when a screenshot is taken
 notify_shot () {
-    ${notify_cmd} "Copied to the clipboard!"
+    eval "${notify_cmd} Copied\ to\ the\ clipboard!"
     paplay /usr/share/sounds/freedesktop/stereo/screen-capture.oga &>/dev/null &
 }
 
 # copy screenshot to clipboard
 copy_shot () {
-    cat "${directory}/$file" | xclip -i -selection clipboard -t image/png
+    xclip -i -selection clipboard -t image/png  < "${directory}"/"${file}"
 }
 
 # countdown
 countdown () {
-    for sec in `seq $1 -1 1`; do
-        dunstify -a "timer" -t 1000 -h string:x-dunst-stack-tag:screenshottimer -i ~/.icons/Material-Black-Blueberry-Numix-FLAT/16/actions/clock.svg "Screenshoting in : $sec"
+    for sec in $(seq "$1" -1 1); do
+        dunstify -a "popup" -t 1000 -h string:x-dunst-stack-tag:screenshottimer -i ~/.icons/Material-Black-Blueberry-Numix-FLAT/16/actions/clock.svg "Screenshoting in : $sec"
         sleep 1
     done
 }
@@ -81,21 +81,21 @@ done
 case ${TYPE} in
     "window")
         if [[ -n ${DELAY} ]]; then
-            countdown ${SECONDS}
+            countdown "${SECONDS}"
             sleep 1
         fi
         shot_window
         ;;
     "area")
         if [[ -n ${DELAY} ]]; then
-            countdown ${SECONDS}
+            countdown "${SECONDS}"
             sleep 1
         fi
         shot_area
         ;;
     "all")
         if [[ -n ${DELAY} ]]; then
-            countdown ${SECONDS}
+            countdown "${SECONDS}"
             sleep 1
         fi
         shot_all

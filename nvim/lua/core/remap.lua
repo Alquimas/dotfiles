@@ -32,8 +32,8 @@ local normal = {
 
     -- buffers
     ["<leader><BS>"] = { "<cmd>bd<cr>", "Deleta buffer" },
-    ["<TAB>"] = { "<cmd>bn<cr>", "Próximo buffer" },
-    ["<S-TAB>"] = { "<cmd>b#<cr>", "Buffer anterior" },
+    ["<S-TAB>"] = { "<cmd>bn<cr>", "Próximo buffer" },
+    ["<C-TAB>"] = { "<cmd>b#<cr>", "Buffer anterior" },
     ["<leader><TAB><BS>"] = {
         function()
             local get_value = vim.api.nvim_get_option_value
@@ -57,13 +57,10 @@ local normal = {
     ["<C-w>w"] = { "<C-w>w", "Next split" },
     ["<C-w>p"] = { "<C-w>p", "Previous split" },
 
-    -- copiar para o clipboard do computador
-    ["<leader>y"] = { [["+y]], "Copy to plus register" },
-
     -- remap for c-a (increase number)
-    -- and c-z (decrease number)
-    ["-"] = "<C-x>",
-    ["+"] = "<C-a>",
+    -- and c-x (decrease number)
+    ["<leader>-"] = { "<C-x>", "Decrease number by one" },
+    ["<leader>+"] = { "<C-a>", "Increase number by one" },
 }
 
 local insert = {

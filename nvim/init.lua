@@ -2,11 +2,6 @@ utils = require("core.utils")
 
 require("core")
 
-vim.env.PATH = vim.env.PATH .. ':' .. vim.fn.expand("$HOME") .. '/.ghcup/bin/'
-
-vim.env.PATH = vim.env.PATH .. ':' .. vim.fn.expand("$HOME") ..
-    '/.opam/firstProject/share/ocp-indent/vim'
-
 cok, config = pcall(require, "config")
 if not cok then
     config = {}

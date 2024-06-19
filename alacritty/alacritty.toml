@@ -37,3 +37,11 @@ import = [
 [font.bold_italic]
     family = "FiraCode Nerd Font Mono"
     style = "Bold Italic"
+
+# [[keyboard.bindings]]
+#     key = "o"
+#     mods = "Control"
+#     [keyboard.bindings.command]
+#     program = "/home/alquimas/.dotfiles/i3/scripts/brightness.sh"
+#     args = [ "--dec" ]
+

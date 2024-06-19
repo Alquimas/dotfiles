@@ -45,7 +45,7 @@ return {
                 local map = utils.map
 
                 local normal = {
-                    ['K'] = {
+                    ['gK'] = {
                         '<cmd>lua vim.lsp.buf.hover()<cr>',
                         "Hover",
                         opts
@@ -65,7 +65,7 @@ return {
                         "Ir para implementação",
                         opts
                     },
-                    ['go'] = {
+                    ['gy'] = {
                         '<cmd>lua vim.lsp.buf.type_definition()<cr>',
                         "Ir para definição de tipo",
                         opts
@@ -75,27 +75,27 @@ return {
                         "Ir para referencias",
                         opts
                     },
-                    ['gs'] = {
+                    ['gK'] = {
                         '<cmd>lua vim.lsp.buf.signature_help()<cr>',
                         "Ver assinatura",
                         opts
                     },
-                    ['<F2>'] = {
+                    ['<leader>cr'] = {
                         '<cmd>lua vim.lsp.buf.rename()<cr>',
                         "Renomear",
                         opts
                     },
-                    ['<F3>'] = {
+                    ['<leader>cf'] = {
                         '<cmd>lua vim.lsp.buf.format({async = true})<cr>',
                         "Formatar",
                         opts
                     },
-                    ['<F4>'] = {
+                    ['<leader>ca'] = {
                         '<cmd>lua vim.lsp.buf.code_action()<cr>',
                         "Code action",
                         opts
                     },
-                    ['<leader>l'] = {
+                    ['<leader>cc'] = {
                         '<cmd>lua vim.diagnostic.open_float()<cr>',
                         "Abrir diagnostico",
                         opts
@@ -112,7 +112,7 @@ return {
                     },
                 }
                 local insert = {
-                    ['gs'] = {
+                    ['<C-k>'] = {
                         '<cmd>lua vim.lsp.buf.signature_help()<cr>',
                         "Ver assinatura",
                         opts

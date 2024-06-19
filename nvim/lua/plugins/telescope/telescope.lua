@@ -66,22 +66,22 @@ return {
             desc = "Find Files"
         },
         {
-            "<leader>gg",
+            "<leader>fg",
             "<cmd>Telescope git_files<cr>",
             desc = "Git Files"
         },
         {
-            "<leader>bb",
+            "<leader>fb",
             "<cmd>Telescope buffers<cr>",
             desc = "See Buffers"
         },
         {
-            "<leader>oo",
+            "<leader>fo",
             "<cmd>Telescope oldfiles<cr>",
             desc = "Old Files"
         },
         {
-            "<leader>cc",
+            "<leader>fc",
             "<cmd>Telescope current_buffer_fuzzy_find<cr>",
             desc = "Find in file"
         },

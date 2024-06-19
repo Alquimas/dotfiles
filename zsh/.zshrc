@@ -1,5 +1,3 @@
-XDG_PICTURES_DIR=${HOME}/Imagens/codeshots
-
 export ZSH_COMPDUMP=${HOME}/.zcompdump-${HOST}
 
 # Histórico:
@@ -16,11 +14,8 @@ alias :exit="exit"
 alias :q="exit"
 alias :clear="clear"
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
 path+=(${HOME}/.cargo/bin)
 path+=(${HOME}/.local/bin)
-path+=(${HOME}/parsers/d_lang/compiler)
 
 #asdf
 . "${HOME}/.asdf/asdf.sh"
@@ -31,9 +26,11 @@ autoload -Uz compinit && compinit
 
 source ~/.dotfiles/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-eval "$(fzf --zsh)"
-
 export STARSHIP_CONFIG=~/.dotfiles/zsh/starship.toml
 eval "$(starship init zsh)"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
+export FZF_DEFAULT_COMMAND='fd --type f'
 
 fastfetch -c ~/.dotfiles/small_debian.jsonc
