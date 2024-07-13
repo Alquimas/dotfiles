@@ -23,6 +23,10 @@ path+=(${HOME}/.local/bin)
 fpath=(${ASDF_DIR}/completions $fpath)
 # initialise completions with ZSH's compinit
 autoload -Uz compinit && compinit
+# golang
+path+="${HOME}/.local/bin/go/bin"
+path+="${HOME}/go/bin"
+path+="${HOME}/Documents/idea/bin"
 
 source ~/.dotfiles/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 

@@ -33,18 +33,21 @@ countdown () {
 # screenshot all
 shot_all () {
     gnome-screenshot -f "${directory}/${file}" && copy_shot
+    sleep 1
     notify_shot
 }
 
 # screenshot a specific window
 shot_window () {
     gnome-screenshot -w -f "${directory}/${file}" && copy_shot
+    sleep 1
     notify_shot
 }
 
 # screenshot a selected area
 shot_area () {
     gnome-screenshot -a -f "${directory}/${file}" && copy_shot
+    sleep 1
     notify_shot
 }
 

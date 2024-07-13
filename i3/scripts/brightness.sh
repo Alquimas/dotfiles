@@ -17,21 +17,30 @@ du_notify() {
 
 # Increase brightness
 inc_backlight() {
-    xbacklight -inc 5 && du_notify
+    xbacklight -inc 3 && du_notify
 }
 
 # Decrease brightness
 dec_backlight() {
-    xbacklight -dec 5 && du_notify
+    xbacklight -dec 3 && du_notify
 }
+
+# For using with i3blocks
+case "$BLOCK_BUTTON" in
+    1) ;;
+    2) ;;
+    3) ;;
+    4) inc_backlight ;;
+    5) dec_backlight ;;
+esac
 
 # Execute accordingly
 if [[ "$1" == "--get" ]]; then
     get_backlight
-elif [[ "$1" == "--inc" ]]; then
+fi
+if [[ "$1" == "--inc" ]]; then
     inc_backlight
-elif [[ "$1" == "--dec" ]]; then
+fi
+if [[ "$1" == "--dec" ]]; then
     dec_backlight
-else
-    get_backlight
 fi

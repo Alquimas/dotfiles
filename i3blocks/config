@@ -12,8 +12,13 @@ interval=30
 
 [volume-pulseaudio]
 command=~/.config/i3blocks/scripts/volume-pulseaudio/volume-pulseaudio
-interval=1
+interval=once
 signal=1
+
+[brightness]
+command=echo -n "󰃟 $(~/.config/i3/scripts/brightness.sh --get)%"
+interval=once
+signal=2
 
 [memory]
 command=echo -n '󰍛 '; ~/.config/i3blocks/scripts/memory/memory
