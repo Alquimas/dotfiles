@@ -11,7 +11,6 @@ floating_modifier $mod
 # make Gnome-screenshot open only in floating window mode
 for_window [class = "Gnome-screenshot"] floating enable
 for_window [class = "Nm-connection-editor"] floating enable
-for_window [class = "Viewnior"] floating enable
 
 # startup aplicattions
 exec --no-startup-id feh --bg-fill ~/.config/i3/wallpaper.jpg
@@ -19,6 +18,7 @@ exec --no-startup-id redshift -O 3000
 exec --no-startup-id $HOME/.config/i3/scripts/battery_warning.sh
 exec --no-startup-id dunst
 exec --no-startup-id nm-applet
+exec --no-startup-id blueman-applet
 exec --no-startup-id xautolock -time 10 -locker "light-locker"
 exec --no-startup-id xss-lock -- light-locker
 exec_always --no-startup-id picom
