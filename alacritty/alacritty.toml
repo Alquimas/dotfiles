@@ -1,5 +1,6 @@
 import = [
-  "~/.config/alacritty/catppuccin-mocha.toml"
+  "~/.config/alacritty/catppuccin-mocha.toml",
+  "~/.config/alacritty/fonts.toml"
 ]
 
 [env]
@@ -22,26 +23,9 @@ import = [
     history = 5_000
     multiplier = 3
 
-[font.normal]
-    family = "FiraCode Nerd Font Mono"
-    style = "Regular"
-
-[font.bold]
-    family = "FiraCode Nerd Font Mono"
-    style = "Bold"
-
-[font.italic]
-    family = "FiraCode Nerd Font Mono"
-    style = "Italic"
-
-[font.bold_italic]
-    family = "FiraCode Nerd Font Mono"
-    style = "Bold Italic"
-
 #[[keyboard.bindings]]
 #    key = "o"
 #    mods = "Control"
 #    [keyboard.bindings.command]
-#    program = "/home/alquimas/.local/bin/tmuxs"
+#    program = ""
 #    args = [ ]
-

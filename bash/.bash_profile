@@ -27,3 +27,7 @@ if [ -d "$HOME/.local/bin" ] ; then
 fi
 
 export PATH="${PATH}:${HOME}/.cargo/env"
+
+export EDITOR="nvim"
+export VISUAL="nvim"
+

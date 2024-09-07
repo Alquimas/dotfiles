@@ -1,0 +1,22 @@
+# font size, measured in points
+[font]
+    size = 12
+
+[font.normal]
+    family = "JetBrains Mono Nerd Font"
+
+[font.bold]
+    family = "JetBrains Mono Nerd Font"
+
+[font.italic]
+    family = "JetBrains Mono Nerd Font"
+
+[font.bold_italic]
+    family = "JetBrains Mono Nerd Font"
+
+# Offset is the extra space around each character
+# y: line spacing
+# x: character spacing
+[font.offset]
+    x = 0
+    y = 0

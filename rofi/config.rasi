@@ -1,6 +1,6 @@
 configuration {
     modi: "run,drun";
-    font: "FiraCode Nerd Font Mono 8";
+    font: "JetBrains Mono Nerd Font 8";
     icon-theme: "Oranchelo";
     show-icons: true;
     terminal: "qterminal";
