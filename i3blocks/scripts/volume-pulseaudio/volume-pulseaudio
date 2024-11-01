@@ -3,11 +3,6 @@
 
 set -a
 
-#AUDIO_HIGH_SYMBOL='󰕾 '
-#AUDIO_MED_THRESH=50
-#AUDIO_MED_SYMBOL='󰖀 '
-#AUDIO_LOW_THRESH=0
-#AUDIO_LOW_SYMBOL='󰸈 '
 AUDIO_HIGH_SYMBOL=${AUDIO_HIGH_SYMBOL:-'󰕾'}
 
 AUDIO_MED_THRESH=${AUDIO_MED_THRESH:-50}
@@ -20,10 +15,10 @@ AUDIO_MUTED_SYMBOL=${AUDIO_MUTED_SYMBOL:-'󰸈'}
 
 AUDIO_DELTA=${AUDIO_DELTA:-5}
 
-DEFAULT_COLOR=${DEFAULT_COLOR:-"#3f74ef"}
+DEFAULT_COLOR=${DEFAULT_COLOR:-"#ffffff"}
 MUTED_COLOR=${MUTED_COLOR:-"#a0a0a0"}
 
-LONG_FORMAT=${LONG_FORMAT:-'${SYMB} ${VOL}%'}
+LONG_FORMAT=${LONG_FORMAT:-'${SYMB} ${VOL}% [${INDEX}:${NAME}]'}
 SHORT_FORMAT=${SHORT_FORMAT:-'${SYMB} ${VOL}% [${INDEX}]'}
 USE_ALSA_NAME=${USE_ALSA_NAME:-0}
 USE_DESCRIPTION=${USE_DESCRIPTION:-0}
@@ -120,7 +115,11 @@ esac
 
 
 function print_format {
-    output=$1
+    if [[ $markup == "pango" ]] ; then
+        output="<span color=\"$2\">$1</span>"
+    else
+        output=$1
+    fi
 
     echo "$output" | envsubst '${SYMB}${VOL}${INDEX}${NAME}'
 }
@@ -166,7 +165,11 @@ sed 's/.*= "\(.*\)".*/\1/')
         COLOR=$MUTED_COLOR
     fi
 
-    print_format "$LONG_FORMAT"
+    print_format "$LONG_FORMAT" $COLOR
+    if [[ $SUBSCRIBE != 1 ]] ; then
+        print_format "$SHORT_FORMAT" $COLOR
+        echo $COLOR
+    fi
 }
 
 print_block

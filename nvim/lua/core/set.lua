@@ -4,8 +4,6 @@ vim.g.mapleader = " "
 local opts = {
     list = true,
     title = true,
-    --ativa o acesso do nvim ao clipboard do sistema
-    clipboard = "unnamedplus",
 
     --ao dividir, divide pra direita e para baixo, e não o oposto
     splitright = true,
@@ -68,7 +66,7 @@ local opts = {
     colorcolumn = "81",
 
     -- muda um pouco o funcionamente da cmdline
-    cmdwinheight = 1,
+    cmdwinheight = 10,
     cmdheight = 1,
 
     -- um folding basico eh melhor que folding nenhum
@@ -79,7 +77,7 @@ local opts = {
     foldenable = true,
     foldlevel = 99,
     foldminlines = 1,
-    foldtext = 'v:lua.utils.custom_fold_text()',
+    foldtext = 'v:lua.Utils.custom_fold_text()',
 
     -- caracteres especiais ativados no regexp
     magic = true,

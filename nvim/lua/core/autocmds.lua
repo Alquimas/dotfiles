@@ -1,25 +1,18 @@
 local autocmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
 
--- Destaca conteudo copiado
+-- highlights yanked content
 local highlight_group = augroup("YankHighlight", { clear = true })
 autocmd("TextYankPost", {
     group = highlight_group,
+    desc = "Highlight yank content",
     pattern = "*",
     callback = function()
         vim.highlight.on_yank { higroup = 'IncSearch', timeout = 500 }
     end,
 })
 
--- Ao salvar um arquivo, deleta qualquer espaço sobrando
-local remove_trailing_space = augroup("TrailingSpace", {})
-autocmd({ "BufWritePre" }, {
-    group = remove_trailing_space,
-    pattern = "*",
-    command = [[%s/\s\+$//e]],
-})
-
--- volta o cursor para a posicao que estava antes de :q
+-- restores cursor position in file when reopening it
 local restorecursor = augroup("RestoreCursor", {})
 autocmd("BufReadPost", {
     group = restorecursor,
@@ -32,7 +25,7 @@ autocmd("BufReadPost", {
     end,
 })
 
--- ao entrar no modo de insercao, desabilita o relativenumber
+-- when entering insert mode, disables the relativenumber
 local togglegroup = augroup("NumberToggle", { clear = true })
 autocmd({ "BufEnter", "FocusGained", "InsertLeave" }, {
     group = togglegroup,
@@ -43,6 +36,7 @@ autocmd({ "BufEnter", "FocusGained", "InsertLeave" }, {
     end,
 })
 
+-- when leaving insert mode, enables the relativenumber
 autocmd({ "BufLeave", "FocusLost", "InsertEnter" }, {
     group = togglegroup,
     desc = "When leaves insert mode, enables relativenumber",
@@ -51,21 +45,3 @@ autocmd({ "BufLeave", "FocusLost", "InsertEnter" }, {
         vim.wo.relativenumber = false
     end,
 })
-
---[[
-local get_indent = augroup("GetIndent", {clear = true})
-autocmd("BufReadPre", {
-    group = get_indent,
-    pattern = "*",
-    callback = function ()
-        vim.opt_local.foldmethod = "indent"
-    end,
-})
-
-autocmd("BufWinEnter", {
-    group = get_indent,
-    pattern = "*",
-    callback = function ()
-        vim.opt_local.foldmethod = "manual"
-    end,
-})]]--

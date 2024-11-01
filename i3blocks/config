@@ -1,17 +1,17 @@
 separator_block_width=12
 markup=none
 align=center
+command=$SCRIPT_DIR/$BLOCK_NAME/$BLOCK_NAME
 
 [date]
 command=echo -n '󰃭 '; date '+%a, %d %b, %H:%M'
 interval=60
 
 [battery2]
-command=~/.config/i3blocks/scripts/battery2/battery2
 interval=30
 
 [volume-pulseaudio]
-command=~/.config/i3blocks/scripts/volume-pulseaudio/volume-pulseaudio
+command=$SCRIPT_DIR/volume-pulseaudio/volume-pulseaudio -H 󰕾 -M 󰖀 -L 󰸈 -X 󰸈 -F '${SYMB} ${VOL}%' -c '#cdd6f4' -C '#cdd6f4'
 interval=once
 signal=1
 

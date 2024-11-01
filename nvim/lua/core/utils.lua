@@ -1,6 +1,6 @@
-M = {}
+Utils = {}
 
-M.map = function(mode, mappings, opts)
+Utils.map = function(mode, mappings, opts)
     -- enabled easy mapping syntax
     -- local mapping = {
     --  ["jk"] = "<esc>",
@@ -25,14 +25,14 @@ M.map = function(mode, mappings, opts)
     end
 end
 
-M.set_curdir = function()
+Utils.set_curdir = function()
     local curdir = vim.fn.expand("%:p:h")
     vim.api.nvim_set_current_dir(curdir)
 end
 
-M.custom_fold_text = function ()
+Utils.custom_fold_text = function ()
     local line_count = vim.v.foldend - vim.v.foldstart + 1
     return " ⚡ Lines folded: " .. line_count
 end
 
-return M
+return Utils

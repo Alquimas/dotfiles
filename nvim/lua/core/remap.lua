@@ -1,91 +1,199 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
-local map = utils.map
+local map = Utils.map
 
 local normal = {
-    ["<c-h>"] = { "<c-w>h", "Ir para split direito" },
-    ["<c-j>"] = { "<c-w>j", "Ir para split inferior" },
-    ["<c-k>"] = { "<c-w>k", "Ir para split superior" },
-    ["<c-l>"] = { "<c-w>l", "Ir para split esquerdo" },
-    ["<leader>d"] = { "\"_d", "Deletar texto" },
-
-    --destaque centralizado
-    ["<C-d>"] = "<C-d>zz",
-    ["<C-u>"] = "<C-u>zz",
-    ["n"] = "nzzzv",
-    ["N"] = "Nzzzv",
-
-    ["<leader>cd"] = { utils.set_curdir, "Muda o diretório" },
-
-    ["<c-a-j>"] = { "<cmd>resize -3<cr>", "Aumenta para baixo" },
-    ["<c-a-k>"] = { "<cmd>resize +3<cr>", "Aumenta para cima" },
-    ["<c-a-l>"] = { "<cmd>vertical resize -3<cr>", "Aumenta para direita" },
-    ["<c-a-h>"] = { "<cmd>vertical resize +3<cr>", "Aumenta para esquerda" },
+    ["<C-h>"] = {
+        "<C-w>h",
+        "Focus on the split on the right"
+    },
+    ["<C-j>"] = {
+        "<C-w>j",
+        "Focus on the lower split"
+    },
+    ["<C-k>"] = {
+        "<C-w>k",
+        "Focus on the upper split"
+    },
+    ["<C-l>"] = {
+        "<C-w>l",
+        "Focus on the split on the right"
+    },
+    ["<C-d>"] = {
+        "<C-d>zz",
+        "Scroll half page down"
+    },
+--  ["<C-u>"] = {
+--      "<C-u>zz",
+--      "Scroll half page up"
+--  },
+    ["n"] = {
+        "nzzzv",
+        "Next ocurrence of the searched term"
+    },
+    ["N"] = {
+        "Nzzzv",
+        "Previous ocurrence of the searched term"
+    },
+    ["cd"] = {
+        Utils.set_curdir,
+        "Sets working directory to current directory",
+    },
+    ["<C-A-j>"] = {
+        "<cmd>resize -3<cr>",
+        "Reduces horizontal size of current split"
+    },
+    ["<C-A-k>"] = {
+        "<cmd>resize +3<cr>",
+        "Increases horizontal size of current split"
+    },
+    ["<C-A-l>"] = {
+        "<cmd>vertical resize -3<cr>",
+        "Reduces vertical size of current split"
+    },
+    ["<C-A-h>"] = {
+        "<cmd>vertical resize +3<cr>",
+        "Increases vertical size of current split"
+    },
     ["<leader>s"] = {
-        [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gc<Left><Left><Left>]],
-        "Substituir palavra"
+        ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gc<Left><Left><Left>",
+        "Substitutes word under cursor"
     },
-    ["<leader>a"] = { "mpgg0vG$y`p", "Copia todo o texto" },
-    ["<a-j>"] = { "<cmd>m .+1<cr>==", "Move a linha para baixo" },
-    ["<a-k>"] = { "<cmd>m .-2<cr>==", "Move a linha para cima" },
-
-    -- buffers
-    ["<leader><BS>"] = { "<cmd>bd<cr>", "Deleta buffer" },
-    ["<S-TAB>"] = { "<cmd>bn<cr>", "Próximo buffer" },
-    ["<C-TAB>"] = { "<cmd>b#<cr>", "Buffer anterior" },
-    ["<leader><TAB><BS>"] = {
-        function()
-            local get_value = vim.api.nvim_get_option_value
-            for _, buf in ipairs(vim.api.nvim_list_bufs()) do
-                if get_value("buflisted", { buf = buf })
-                    and not get_value("modified",{buf = buf})
-                    and buf ~= vim.api.nvim_get_current_buf() then
-                    vim.api.nvim_buf_delete(buf, {})
-                end
-            end
-        end,
-        "Deleta todos os buffers exceto o atual"
+    ["<leader>a"] = {
+        "<cmd>%y+<cr>",
+        "Yanks all text on buffer"
     },
-
-    -- as chances de eu querer recortar sao mininmas
-    ["x"] = '"_x',
-
-    -- splits (sim, esses são os comandos padrao, so quero memorizar)
-    ["<C-w>v"] = { "<cmd>vsplit<cr>", "Split vertical" },
-    ["<C-w>s"] = { "<cmd>split<cr>", "Split horizontal" },
-    ["<C-w>w"] = { "<C-w>w", "Next split" },
-    ["<C-w>p"] = { "<C-w>p", "Previous split" },
-
-    -- remap for c-a (increase number)
-    -- and c-x (decrease number)
-    ["<leader>-"] = { "<C-x>", "Decrease number by one" },
-    ["<leader>+"] = { "<C-a>", "Increase number by one" },
+    ["<a-j>"] = {
+        "<cmd>m .+1<cr>==",
+        "Moves current line down"
+    },
+    ["<a-k>"] = {
+        "<cmd>m .-2<cr>==",
+        "Moves current line up"
+    },
+    ["<leader><BS>"] = {
+        "<cmd>bd<cr>",
+        "Deletes buffer"
+    },
+    ["<S-TAB>"] = {
+        "<cmd>bn<cr>",
+        "Next buffer"
+    },
+    ["<C-TAB>"] = {
+        "<cmd>b#<cr>",
+        "Previous buffer"
+    },
+    ["x"] = {
+        "\"_x",
+        "Deletes a single caracter"
+    },
+    ["<C-w>v"] = {
+        "<cmd>vsplit<cr>",
+        "Creates a vertical split"
+    },
+    ["<C-w>s"] = {
+        "<cmd>split<cr>",
+        "Creates a horizontal split"
+    },
+    ["<C-w>w"] = {
+        "<C-w>w",
+        "Go to next split"
+    },
+    ["<C-w>p"] = {
+        "<C-w>p",
+        "Go to previous split"
+    },
+    ["<leader>-"] = {
+        "<C-x>",
+        "Decrease number by one"
+    },
+    ["<leader>+"] = {
+        "<C-a>",
+        "Increase number by one"
+    },
+    ["<leader>y"] = {
+        "\"+y",
+        "Yank to system clipboard"
+    },
+    ["<leader>Y"] = {
+        "\"+Y",
+        "Yank to system clipboard"
+    },
+    ["<leader>p"] = {
+        "\"+p",
+        "Paste from the system clipboard"
+    },
+    ["<leader>P"] = {
+        "\"+P",
+        "Paste from the system clipboard"
+    }
 }
 
 local insert = {
-    ["jk"] = "<esc>",
-    ["kj"] = "<esc>",
-    ["<c-s>"] = "<esc>:w<cr>i",
-    ["<a-j>"] = "<esc>:m .+1<cr>==gi",
-    ["<a-k>"] = "<esc>:m .-2<cr>==gi",
-    ["/*"] = "/**/<left><left>"
+    ["jk"] = {
+        "<esc>",
+        "Exits insert mode"
+    },
+    ["kj"] = {
+        "<esc>",
+        "Exits insert mode"
+    },
+    ["<c-s>"] = {
+        "<esc>:w<cr>a",
+        "Write current buffer"
+    },
+    ["<a-j>"] = {
+        "<esc><cmd>m .+1<cr>==gi",
+        "Move current line down"
+    },
+    ["<a-k>"] = {
+        "<esc><cmd>m .-2<cr>==gi",
+        "Move current line up"
+    },
 }
 
 local visual = {
-    ["<c-s>"] = "<esc>:w<cr>",
-    ["<c-c>"] = "<esc>",
-
-    ["<a-j>"] = ":m '>+1<cr>gv-gv",
-    ["<a-k>"] = ":m '<lt>-2<CR>gv-gv",
-
-    ["<"] = "<gv",
-    [">"] = ">gv",
-
-
-    ["x"] = '"_x',
-    ["p"] = '"_dP',
-    ["P"] = '"_dP',
+    ["<c-c>"] = {
+        "<esc>",
+        "Exits visual mode"
+    },
+    ["<a-j>"] = {
+        ":m '>+1<cr>gv-gv",
+        "Move current line down"
+    },
+    ["<a-k>"] = {
+        ":m '<lt>-2<CR>gv-gv",
+        "Move current line up"
+    },
+    ["<"] = {
+        "<gv",
+        "Indent text to left"
+    },
+    [">"] = {
+        ">gv",
+        "Indent text to right"
+    },
+    ["x"] = {
+        '"_x',
+        "Deletes a single caracter"
+    },
+    ["<leader>y"] = {
+        "\"+y",
+        "Yank to system clipboard"
+    },
+    ["<leader>Y"] = {
+        "\"+Y",
+        "Yank to system clipboard"
+    },
+    ["<leader>p"] = {
+        "\"+p",
+        "Paste from the system clipboard"
+    },
+    ["<leader>P"] = {
+        "\"+P",
+        "Paste from the system clipboard"
+    }
 }
 
 map("n", normal)
@@ -93,9 +201,14 @@ map("i", insert)
 map("x", visual)
 
 local movement = {
-    ["j"] = "v:count ? 'j' : 'gj'",
-    ["k"] = "v:count ? 'k' : 'gk'",
+    ["j"] = {
+        "v:count ? 'j' : 'gj'",
+        "Go down one visual line"
+    },
+    ["k"] = {
+        "v:count ? 'k' : 'gk'",
+        "Go up one visual line"
+    },
 }
-
 map("n", movement, { expr = true })
 map("x", movement, { expr = true })

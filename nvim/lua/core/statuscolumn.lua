@@ -1,4 +1,7 @@
 function GetStatusColumnFmt()
+    if vim.api.nvim_buf_get_name(0):match("^oil") then
+        return ""
+    end
     local wo = vim.wo[vim.g.statusline_winid]
     local components = { "%s" }
     local foldlevel = vim.fn.foldlevel

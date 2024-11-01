@@ -1,4 +1,4 @@
-utils = require("core.utils")
+Utils = require("core.utils")
 
 require("core")
 

@@ -11,21 +11,21 @@ get_backlight() {
 du_notify() {
     BRIGHTNESS=$(get_backlight)
     dunstify -a "popup" -u low -h string:x-dunst-stack-tag:brightness \
-        -i ~/.icons/Material-Black-Blueberry-Numix-FLAT/48/notifications/notification-display-brightness-full.svg \
+        -i ~/.local/share/icons/Material-Black-Blueberry-Numix-FLAT/48/notifications/notification-display-brightness-full.svg \
         -h int:value:"${BRIGHTNESS}" "Brightness:"
 }
 
-# Increase brightness
+# Increase
 inc_backlight() {
     xbacklight -inc 3 && du_notify
 }
 
-# Decrease brightness
+# Decrease
 dec_backlight() {
     xbacklight -dec 3 && du_notify
 }
 
-# For using with i3blocks
+# For usage with i3blocks
 case "$BLOCK_BUTTON" in
     1) ;;
     2) ;;
@@ -34,7 +34,7 @@ case "$BLOCK_BUTTON" in
     5) dec_backlight ;;
 esac
 
-# Execute accordingly
+# Execute
 if [[ "$1" == "--get" ]]; then
     get_backlight
 fi

@@ -32,9 +32,9 @@ return {
                         anchor = 'center',
                         height = 0.9,
                         preview_cutoff = 120,
-                        preview_width = 0,
+                        preview_width = 50,
                         prompt_position = 'bottom',
-                        width = 0.8,
+                        width = 0.9,
                     },
                 },
                 prompt_prefix = ' ',
@@ -57,6 +57,12 @@ return {
         for _, extension in ipairs(ext) do
             telescope.load_extension(extension)
         end
+
+        local wk = require("which-key")
+        wk.add({
+            { "<leader>f", group = "Telescope"},
+        })
+
     end,
 
     keys = {
@@ -83,7 +89,17 @@ return {
         {
             "<leader>fc",
             "<cmd>Telescope current_buffer_fuzzy_find<cr>",
-            desc = "Find in file"
+            desc = "Find in file",
         },
+        {
+            "<leader>fl",
+            "<cmd>Telescope live_grep<cr>",
+            desc = "Live grep"
+        },
+        {
+            "<leader>fz",
+            "<cmd>Telescope<cr>",
+            desc = "Telescope"
+        }
     },
 }

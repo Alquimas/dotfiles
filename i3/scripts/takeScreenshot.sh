@@ -3,10 +3,9 @@
 time=$(date +%Y_%m_%d-%T)
 directory="$(xdg-user-dir PICTURES)/Screenshots"
 file="screenshot_from-${time}.png"
-notify_cmd='dunstify -a "popup" -h string:x-dunst-stack-tag:takescreenshot -i ~/.icons/Material-Black-Blueberry-Numix-FLAT/16/mimetypes/image-png.svg Screenshot'
+notify_cmd='dunstify -a "popup" -h string:x-dunst-stack-tag:takescreenshot -i ~/.local/share/icons/Material-Black-Blueberry-Numix-FLAT/16/mimetypes/image-png.svg Screenshot'
 
-# if the screenshots directory dont exists,
-# create it
+# if the screenshots directory dont exists, create it
 if [[ ! -d "${directory}" ]]; then
     mkdir -p "${directory}"
 fi
@@ -19,36 +18,24 @@ notify_shot () {
 
 # copy screenshot to clipboard
 copy_shot () {
-    xclip -i -selection clipboard -t image/png  < "${directory}"/"${file}"
-}
-
-# countdown
-countdown () {
-    for sec in $(seq "$1" -1 1); do
-        dunstify -a "popup" -t 1000 -h string:x-dunst-stack-tag:screenshottimer -i ~/.icons/Material-Black-Blueberry-Numix-FLAT/16/actions/clock.svg "Screenshoting in : $sec"
-        sleep 1
-    done
+    tee "${file}" | xclip -selection clipboard -t image/png
 }
 
 # screenshot all
 shot_all () {
-    gnome-screenshot -f "${directory}/${file}" && copy_shot
-    sleep 1
-    notify_shot
+    cd "${directory}" && maim -u -f png | copy_shot && notify_shot
 }
 
 # screenshot a specific window
 shot_window () {
-    gnome-screenshot -w -f "${directory}/${file}" && copy_shot
-    sleep 1
-    notify_shot
+    cd "${directory}" && maim -u -f png -i "$(xdotool getactivewindow)" \
+    | copy_shot && notify_shot
 }
 
 # screenshot a selected area
 shot_area () {
-    gnome-screenshot -a -f "${directory}/${file}" && copy_shot
-    sleep 1
-    notify_shot
+    cd "${directory}" && maim -u -f png -s -b 1.5 -c 0.3,0.50,0.85,0.25 -l \
+    | copy_shot && notify_shot
 }
 
 usage () {
@@ -56,20 +43,15 @@ usage () {
 Usage: takeScreenshot [-h] [-d seconds] [-t]
 
   -h		Show this message.
-  -d		Delay until the screenshot is taken.
   -t		Type of the screenshot. Suported are window, area and all.
 EOF
 }
 
-while getopts 'hd:t:' opt; do
+while getopts 'ht:' opt; do
     case ${opt} in
         h)
             usage
             exit 0
-            ;;
-        d)
-            DELAY="d"
-            SECONDS=${OPTARG}
             ;;
         t)
             TYPE=${OPTARG}
@@ -83,24 +65,12 @@ done
 
 case ${TYPE} in
     "window")
-        if [[ -n ${DELAY} ]]; then
-            countdown "${SECONDS}"
-            sleep 1
-        fi
         shot_window
         ;;
     "area")
-        if [[ -n ${DELAY} ]]; then
-            countdown "${SECONDS}"
-            sleep 1
-        fi
         shot_area
         ;;
     "all")
-        if [[ -n ${DELAY} ]]; then
-            countdown "${SECONDS}"
-            sleep 1
-        fi
         shot_all
         ;;
     *)

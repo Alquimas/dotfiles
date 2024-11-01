@@ -4,7 +4,13 @@ local servers = {}
 
 servers.rust_analyzer = {}
 
-servers.clangd = {}
+servers.clangd = {
+    cmd = {
+        "clangd",
+        "--clang-tidy",
+        "--clang-tidy-checks=*",
+    }
+}
 
 servers.lua_ls = {
     Lua = {
@@ -24,11 +30,6 @@ servers.texlab = {}
 servers.jdtls = {}
 
 servers.ocamllsp = {}
-
-servers.elixirls = {
-    cmd = { vim.fn.expand("$HOME") ..
-    "/.config/nvim/language_servers/elixir-ls-v0.17.8/language_server.sh" },
-}
 
 servers.zls = {}
 

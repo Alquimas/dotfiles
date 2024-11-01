@@ -22,28 +22,28 @@
         },
         {
             "type": "os",
-            "key": " OS",
+            "key": "  OS",
             "keyColor": "34",
         },
         {
             "type": "memory",
-            "key": " Memory",
+            "key": "  Memory",
             "keyColor": "34",
         },
         {
             "type": "disk",
             "folders": "/",
-            "key": "󰋊 Disk",
+            "key": "󰋊  Disk",
             "keyColor": "34",
         },
         {
             "type": "battery",
-            "key": "󰁹 Battery",
+            "key": "󰁹  Battery",
             "keyColor": "34",
         },
         {
             "type": "terminal",
-            "key": " Terminal",
+            "key": "  Terminal",
             "keyColor": "34",
         },
     ]

@@ -116,7 +116,6 @@ fi
 
 export PATH="${PATH}:${HOME}/.cargo/bin"
 export PATH="${PATH}:${HOME}/.local/bin"
-export PATH="${PATH}:${HOME}/Documents/idea/bin"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
@@ -124,6 +123,8 @@ export FZF_DEFAULT_COMMAND='fd --type f'
 
 export STARSHIP_CONFIG=~/.dotfiles/bash/starship.toml
 eval "$(starship init bash)"
+
+eval "$(zoxide init bash)"
 
 if [[ -z ${TMUX} ]]; then
     fastfetch -c ~/.dotfiles/small_debian.jsonc

@@ -42,84 +42,93 @@ return {
             callback = function(event)
                 local opts = { buffer = event.buf }
 
-                local map = utils.map
+                local map = Utils.map
 
                 local normal = {
-                    ['gK'] = {
+                    ['<leader>cK'] = {
                         '<cmd>lua vim.lsp.buf.hover()<cr>',
-                        "Hover",
+                        "Displays hover information about the symbol under the\
+                        cursor.",
                         opts
                     },
-                    ['gd'] = {
+                    ['<leader>cd'] = {
                         '<cmd>lua vim.lsp.buf.definition()<cr>',
-                        "Ir para definição",
+                        "Jumps to the definition of the symbol\
+                        under the cursor.",
                         opts
                     },
-                    ['gD'] = {
+                    ['<leader>cD'] = {
                         '<cmd>lua vim.lsp.buf.declaration()<cr>',
-                        "Ir para declaração",
+                        "Jumps to the declaration of the symbol\
+                        under the cursor.",
                         opts
                     },
-                    ['gi'] = {
+                    ['<leader>ci'] = {
                         '<cmd>lua vim.lsp.buf.implementation()<cr>',
-                        "Ir para implementação",
+                        "Lists all the implementations for the symbol\
+                        under the cursor in the quickfix window.",
                         opts
                     },
-                    ['gy'] = {
+                    ['<leader>cy'] = {
                         '<cmd>lua vim.lsp.buf.type_definition()<cr>',
-                        "Ir para definição de tipo",
+                        "Jumps to the definition of the type of the symbol\
+                        under the cursor.",
                         opts
                     },
-                    ['gr'] = {
+                    ['<leader>cR'] = {
                         '<cmd>lua vim.lsp.buf.references()<cr>',
-                        "Ir para referencias",
+                        "Lists all the references to the symbol\
+                        under the cursos in the quickfix window.",
                         opts
                     },
-                    ['gK'] = {
+                    ['<leader>ck'] = {
                         '<cmd>lua vim.lsp.buf.signature_help()<cr>',
-                        "Ver assinatura",
+                        "Displays signature information about the symbol under\
+                        the cursor in a floating window.",
                         opts
                     },
                     ['<leader>cr'] = {
                         '<cmd>lua vim.lsp.buf.rename()<cr>',
-                        "Renomear",
+                        "Renames all references to the symbol under the\
+                        cursor.",
                         opts
                     },
                     ['<leader>cf'] = {
                         '<cmd>lua vim.lsp.buf.format({async = true})<cr>',
-                        "Formatar",
+                        "Formats a buffer using the attached language server\
+                        clients.",
                         opts
                     },
                     ['<leader>ca'] = {
                         '<cmd>lua vim.lsp.buf.code_action()<cr>',
-                        "Code action",
+                        "Selects a code action available at the current cursor\
+                        position.",
                         opts
                     },
                     ['<leader>cc'] = {
                         '<cmd>lua vim.diagnostic.open_float()<cr>',
-                        "Abrir diagnostico",
+                        "Show diagnostics in a floating window.",
                         opts
                     },
-                    ['[d'] = {
+                    ['<leader>cq'] = {
+                        '<cmd>lua vim.diagnostic.setqflist()<cr>',
+                        "Add all diagnostics to the quickfix list.",
+                        opts
+                    },
+                    ['<leader>c['] = {
                         '<cmd>lua vim.diagnostic.goto_prev()<cr>',
-                        "Ir para próximo diagnostico",
+                        "Move to the previous diagnostic in the current\
+                        buffer.",
                         opts
                     },
-                    [']d'] = {
+                    ['<leader>c]'] = {
                         '<cmd>lua vim.diagnostic.goto_next()<cr>',
-                        "Ir para diagnostico anterior",
-                        opts
-                    },
-                }
-                local insert = {
-                    ['<C-k>'] = {
-                        '<cmd>lua vim.lsp.buf.signature_help()<cr>',
-                        "Ver assinatura",
+                        "Move to the next diagnostic in the current\
+                        buffer.",
                         opts
                     },
                 }
                 map("n", normal)
-                map("i", insert)
             end
         })
 
@@ -128,5 +137,10 @@ return {
                 string.format("require('lspconfig').%s.setup", k) ..
                 '(...)'))(v)
         end
+
+        local wk = require("which-key")
+        wk.add({
+            {"<leader>c", group = "LSP"},
+        })
     end,
 }
