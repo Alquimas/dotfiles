@@ -1,0 +1,22 @@
+# font size, measured in points
+[font]
+    size = 13
+
+[font.normal]
+    family = "ComicShannsMonoNerdFont"
+
+[font.bold]
+    family = "ComicShannsMonoNerdFont"
+
+[font.italic]
+    family = "ComicShannsMonoNerdFont"
+
+[font.bold_italic]
+    family = "ComicShannsMonoNerdFont"
+
+# Offset is the extra space around each character
+# y: line spacing
+# x: character spacing
+[font.offset]
+    x = 0
+    y = 0
