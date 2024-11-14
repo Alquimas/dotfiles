@@ -1,6 +1,6 @@
 # font size, measured in points
 [font]
-    size = 13
+    size = 12
 
 [font.normal]
     family = "ComicShannsMonoNerdFont"

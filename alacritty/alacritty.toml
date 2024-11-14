@@ -1,8 +1,3 @@
-import = [
-  "~/.config/alacritty/catppuccin-mocha.toml",
-  "~/.config/alacritty/fonts.toml"
-]
-
 [env]
     TERM = "xterm-256color"
 
@@ -17,11 +12,17 @@ import = [
 
     [window.padding]
         x = 0
-        y = 0
+        y = 10
 
 [scrolling]
     history = 5_000
     multiplier = 3
+
+[general]
+import = [
+  "~/.config/alacritty/catppuccin-mocha.toml",
+  "~/.config/alacritty/fonts.toml"
+]
 
 #[[keyboard.bindings]]
 #    key = "o"

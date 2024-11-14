@@ -18,24 +18,24 @@ notify_shot () {
 
 # copy screenshot to clipboard
 copy_shot () {
-    tee "${file}" | xclip -selection clipboard -t image/png
+    xclip -selection clipboard -t image/png "${file}" && notify_shot
 }
 
 # screenshot all
 shot_all () {
-    cd "${directory}" && maim -u -f png | copy_shot && notify_shot
+    cd "${directory}" && maim -u -f png "${file}" && copy_shot
 }
 
 # screenshot a specific window
 shot_window () {
     cd "${directory}" && maim -u -f png -i "$(xdotool getactivewindow)" \
-    | copy_shot && notify_shot
+    "${file}" && copy_shot
 }
 
 # screenshot a selected area
 shot_area () {
     cd "${directory}" && maim -u -f png -s -b 1.5 -c 0.3,0.50,0.85,0.25 -l \
-    | copy_shot && notify_shot
+    "${file}" && copy_shot
 }
 
 usage () {

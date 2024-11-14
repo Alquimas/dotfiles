@@ -16,7 +16,7 @@ interval=once
 signal=1
 
 [brightness]
-command=echo -n "󰃟 $(~/.config/i3/scripts/brightness.sh --get)%"
+command=echo "󰃟 $(~/.config/i3/scripts/brightness.sh --get)%"
 interval=once
 signal=2
 
@@ -25,9 +25,9 @@ command=echo -n '󰍛 '; ~/.config/i3blocks/scripts/memory/memory
 interval=5
 
 [cpu]
-command=echo -n '󰻠 '; sar -u 1 1 | awk 'FNR == 5 { printf "%04.1f%", (100 - $8) } '
+command=echo "󰻠 $(sar -u 1 1 | awk 'FNR == 5 { printf "%04.1f%", (100 - $8) } ')"
 interval=1
 
 [disk-home]
-command=echo -n ' '; df -h -l --output='used' "$HOME" | grep -E -o '[0-9]+G'
+command=echo "  $(df -h -l --output='used' / | grep -E -o '[0-9]+(.[0-9]+)?G')"
 interval=50

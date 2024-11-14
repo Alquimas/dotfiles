@@ -116,8 +116,9 @@ fi
 
 export PATH="${PATH}:${HOME}/.cargo/bin"
 export PATH="${PATH}:${HOME}/.local/bin"
+export PATH="${PATH}:/opt/nvim-linux64/bin"
 
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+eval "$(fzf --bash)"
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 export FZF_DEFAULT_COMMAND='fd --type f'
 
@@ -126,6 +127,6 @@ eval "$(starship init bash)"
 
 eval "$(zoxide init bash)"
 
-if [[ -z ${TMUX} ]]; then
-    fastfetch -c ~/.config/bash/small_debian.jsonc
+if [ -z "${TMUX}" ] && [ -z "${ZELLIJ}" ]; then
+    fastfetch -c ~/.config/bash/small_icon.jsonc
 fi

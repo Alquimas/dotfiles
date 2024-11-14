@@ -2,9 +2,7 @@
 
 # Get brightness
 get_backlight() {
-    BNESS=$(xbacklight -get)
-    LIGHT=${BNESS%.*}
-    echo "${LIGHT}"
+    echo $(($(($(brightnessctl g) * 100))/$(brightnessctl m)))
 }
 
 # Notify
@@ -12,17 +10,22 @@ du_notify() {
     BRIGHTNESS=$(get_backlight)
     dunstify -a "popup" -u low -h string:x-dunst-stack-tag:brightness \
         -i ~/.local/share/icons/Material-Black-Blueberry-Numix-FLAT/48/notifications/notification-display-brightness-full.svg \
-        -h int:value:"${BRIGHTNESS}" "Brightness:"
+        -h int:value:"${BRIGHTNESS}%" "Brightness:"
 }
 
 # Increase
 inc_backlight() {
-    xbacklight -inc 3 && du_notify
+    actual_value=$(get_backlight)
+    new_value=$(( actual_value + 3 ))
+    brightnessctl s "${new_value}%" > /dev/null 2>&1 && du_notify
 }
 
 # Decrease
 dec_backlight() {
-    xbacklight -dec 3 && du_notify
+    actual_value=$(get_backlight)
+    new_value=$(( actual_value - 3 ))
+    result=$(( new_value > 0 ? new_value : 0 ))
+    brightnessctl s "${result}%" > /dev/null 2>&1 && du_notify
 }
 
 # For usage with i3blocks
