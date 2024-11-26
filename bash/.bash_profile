@@ -31,3 +31,6 @@ export PATH="${PATH}:${HOME}/.cargo/env"
 export EDITOR="nvim"
 export VISUAL="nvim"
 
+# >>> coursier install directory >>>
+export PATH="$PATH:/home/Alquimas/.local/share/coursier/bin"
+# <<< coursier install directory <<<
