@@ -118,6 +118,7 @@ export PATH="${PATH}:${HOME}/.cargo/bin"
 export PATH="${PATH}:${HOME}/.local/bin"
 export PATH="${PATH}:/opt/nvim-linux64/bin"
 export PATH="${PATH}:${HOME}/go/bin"
+export PATH="${PATH}:${HOME}/.fzf/bin"
 
 eval "$(fzf --bash)"
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'

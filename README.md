@@ -1,6 +1,15 @@
-## Dotfiles
+# Dotfiles
 
-Here are my dotfiles. That's it.
+## Here are my dotfiles. That's it.
+
+![Nvim example](images/nvim.png)
+
+<p align="center">
+    <b>Screenshots</b><br>
+    <a href="images/rofi.png">Rofi</a>&nbsp;&nbsp;&nbsp;
+    <a href="images/thunar.png">Thunar</a>&nbsp;&nbsp;&nbsp;
+    <a href="images/tmux.png">Tmux</a>
+</p>
 
 ## About this repository
 
@@ -17,26 +26,27 @@ I use Debian 12, and I installed most of the dependencies through apt. Below are
 
 | Item   | Source | Version |
 |--------|--------|---------|
-| alacritty | Cargo | 0.13.2 |
+| alacritty | Cargo | 0.14.0 |
+| brightnessctl | Apt | 0.5 |
 | dunst | Apt | 1.9.0 |
-| fastfetch | Github | 2.12.0 |
+| fastfetch | Github | 2.33.0 |
 | feh | Apt | 3.9.1 |
-| fzf | Github | 0.54.3 |
+| fzf | Github | 0.57.0 |
 | git | Apt | 2.39.5 |
-| gtk 3-0 | Apt | 3.24.38-2 |
-| i3-wm  | Apt    | 4.22-2  |
-| i3blocks | Apt  | 1.4-4   |
-| maim | Apt | 5.7.4 |
+| gtk3 | Apt | 3.24.38-2 |
+| i3-wm  | Apt | 4.22-2  |
+| i3blocks | Apt | 1.4-4   |
+| maim | Apt | 5.7.4-2 |
 | rofi | Apt | 1.7.3 |
 | picom | Apt | 9.1-1 |
-| redshift | Apt | 1.12 |
-| starship | Github | 1.18.2 |
-| tee | Apt | 9.1 |
-| tmux | Apt | 3.3a-3 |
+| redshift | Apt | 1.21.1 |
+| starship | Cargo | 1.21.1 |
+| tmux | Apt | 3.3a |
 | thunar | Apt | 4.18.4 |
-| xclip | Apt | 0.13.0 |
+| xclip | Apt | 0.13 |
+| zoxide | Cargo | 0.9.6 |
 
-I also use the [Catppuccin](https://github.com/catppuccin/) in most programs that have it. In addition, there are dependencies for GTK and for a font. They are
+I also use the [Catppuccin](https://github.com/catppuccin/) theme in most programs that have it. In addition, there are dependencies for GTK and for a font. They are
 
     - `Catppuccin-Mocha-Standard-Sky-Dark` theme for GTK.
     - `Material-Black-Blueberry-Numix-FLAT` icon theme for GTK.
@@ -44,3 +54,17 @@ I also use the [Catppuccin](https://github.com/catppuccin/) in most programs tha
     - `ComicShannsMonoNerdFont` font. I use this font in all applications that allow custom fonts.
 
 You can download and use the ones that work best for you, but you will need to manually change them in the configuration files.
+
+## APT dependencies
+
+If you are using Debian or one of its derivatives, you can install the APT dependencies that I mentioned here with the following command:
+
+```
+sudo apt install brightnessctl dunst feh git i3-wm i3blocks libgtk-3-0 maim rofi picom redshift tmux thunar xclip
+```
+
+And if you are going to use Cargo, you may need to install one of the following packages:
+
+```
+sudo apt install curl gcc g++ pkg-config fontconfig cmake
+```
