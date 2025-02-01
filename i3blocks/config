@@ -11,7 +11,7 @@ interval=60
 interval=30
 
 [volume-pulseaudio]
-command=$SCRIPT_DIR/volume-pulseaudio/volume-pulseaudio -H 󰕾 -M 󰖀 -L 󰸈 -X 󰸈 -F '${SYMB} ${VOL}%' -c '#cdd6f4' -C '#cdd6f4'
+command=$SCRIPT_DIR/volume-pulseaudio/volume-pulseaudio -H 󰕾 -M 󰖀 -L 󰸈 -X 󰸈 -F '${SYMB} ${VOL}%' -c '#a9a7aa' -C '#a9a7aa'
 interval=once
 signal=1
 
