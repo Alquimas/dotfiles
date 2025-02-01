@@ -9,7 +9,7 @@
     grey: #6c7086;
 
     width: 600;
-    font: "ComicShannsMonoNerdFont 14";
+    font: "FantasqueSansMNErdFont 14";
 }
 
 element-text, element-icon , mode-switcher {

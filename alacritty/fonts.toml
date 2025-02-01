@@ -1,18 +1,18 @@
 # font size, measured in points
 [font]
-    size = 12
+    size = 13
 
 [font.normal]
-    family = "ComicShannsMonoNerdFont"
+    family = "FantasqueSansMNErdFont"
 
 [font.bold]
-    family = "ComicShannsMonoNerdFont"
+    family = "FantasqueSansMNErdFont"
 
 [font.italic]
-    family = "ComicShannsMonoNerdFont"
+    family = "FantasqueSansMNErdFont"
 
 [font.bold_italic]
-    family = "ComicShannsMonoNerdFont"
+    family = "FantasqueSansMNErdFont"
 
 # Offset is the extra space around each character
 # y: line spacing
