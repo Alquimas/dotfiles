@@ -14,8 +14,8 @@
     padding = 10
     horizontal_padding = 10
     text_icon_padding = 0
-    frame_width = 3
-    frame_color = "#89b4fa"
+    frame_width = 5
+    frame_color = "#101010"
     gap_size = 0
     separator_color = frame
     sort = yes
@@ -23,7 +23,7 @@
     font = FantasqueSansMNErdFont 10
     line_height = 0
     markup = full
-    format = "<span foreground='#f3f4f5'><b>%s %p</b></span>\n%b"
+    format = "<span><b>%s %p</b></span>\n%b"
     alignment = left
     vertical_alignment = center
     show_age_threshold = 60
@@ -35,7 +35,7 @@
     icon_position = left
     min_icon_size = 0
     max_icon_size = 32
-    icon_theme = Adwaita,Material-Black-Blueberry-Numix-FLAT
+    icon_theme = Adwaita
     enable_recursive_icon_lookup = true
     sticky_history = true
     history_length = 20
@@ -62,8 +62,8 @@
 
 [urgency_critical]
     timeout = 0
-    frame_color = "#f7f7f7"
-    background = "#f7f7f7"
+    frame_color = "#101010"
+    background = "#5e5e5e"
     foreground = "#101010"
     override_pause_level = 60
     default_icon = /usr/share/icons/Adwaita/16x16/status/dialog-warning-symbolic.symbolic.png
