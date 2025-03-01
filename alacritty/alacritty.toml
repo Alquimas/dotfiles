@@ -19,14 +19,7 @@
     multiplier = 3
 
 [general]
-import = [
-  "~/.config/alacritty/catppuccin-mocha.toml",
-  "~/.config/alacritty/fonts.toml"
-]
-
-#[[keyboard.bindings]]
-#    key = "o"
-#    mods = "Control"
-#    [keyboard.bindings.command]
-#    program = ""
-#    args = [ ]
+    import = [
+      "~/.config/alacritty/catppuccin-mocha.toml",
+      "~/.config/alacritty/fonts.toml"
+    ]
