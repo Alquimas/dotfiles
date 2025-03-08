@@ -3,7 +3,9 @@ set $mod Mod4
 set $alt Mod1
 
 # Load config files
-include ~/.config/i3/config_files/*.conf
+include ~/.config/i3/config_files/theme.conf
+include ~/.config/i3/config_files/keybindings.conf
+include ~/.config/i3/config_files/fonts.conf
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod

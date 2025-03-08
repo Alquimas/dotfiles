@@ -28,7 +28,6 @@
     alternate-urgent-background: @lightbg;
 
     width: 600;
-    font: "FantasqueSansMNErdFont 14";
 }
 
 element-text, element-icon , mode-switcher {

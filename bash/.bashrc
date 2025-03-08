@@ -132,3 +132,4 @@ eval "$(zoxide init bash)"
 if [ -z "${TMUX}" ] && [ -z "${ZELLIJ}" ]; then
     fastfetch -c ~/.config/bash/small_icon.jsonc
 fi
+. "$HOME/.cargo/env"

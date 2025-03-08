@@ -1,74 +1,151 @@
 [global]
-    monitor = 0
+
+    # Display notifications on monitor with mouse focus.
     follow = mouse
-    width = 320
+
+    # The width of the notification window in pixels.
+    width = (0, 350)
+
+    # The maximum height of a single notification.
     height = 320
-    origin = top-right
+
+    # Respectively the horizontal and vertical offset in pixels
+    # from the corner of the screen specified by origin.
     offset = 15x15
-    scale = 0
+
+    # The origin of the notification window on the screen.
+    origin = top-right
+
+    # The number of notifications that can appear at one time.
+    # The value 0 means no limit
     notification_limit = 0
+
+    # When an integer value is passed to dunst as a hint (see NOTIFY-SEND),
+    # a progress bar will be drawn at the bottom of the notification.
+    # This behavior can be turned off by setting this setting to false.
     progress_bar = true
+
+    # Horizontal alignment of the progress bar.
+    # The progress bar will always keep a distance of horizontal_padding from
+    # the edge of the notification.
+    progress_bar_horizontal_alignment = center
+
+    # The height of the progress bar in pixel. This includes the frame.
+    # Make sure this value is bigger than twice the frame width.
+    progress_bar_height = 10
+
+    # The minimum width of the progress bar in pixels.
+    # The notification is rescaled to fit the bar.
+    progress_bar_min_width = 150
+
+    # The maximum width of the progress bar in pixels.
+    # The notification is resized to fit the progress bar.
+    progress_bar_max_width = 300
+
+    # The frame width of the progress bar in pixels.
+    # This value should be smaller than half of the progress bar height.
+    progress_bar_frame_width = 1
+
+    # If this is set to true, a notification indicating how many notifications
+    # are not being displayed due to the notification limit will be shown in
+    # place of the last notification slot.
     indicate_hidden = yes
+
+    # A 0-100 range on how transparent the notification window should be,
+    # with 0 being fully opaque and 100 invisible. X11 only.
+    # This setting will only work if a compositor is running.
     transparency = 0
+
+    # The height in pixels of the separator between notifications,
+    # if set to 0 there will be no separating line between notifications.
+    # This setting will be ignored if gap_size is greater than 0.
     separator_height = 2
+
+    # The distance in pixels from the content to the separator/border of
+    # the window in the vertical axis.
     padding = 10
+
+    # The distance in pixels from the content to the border of
+    # the window in the horizontal axis.
     horizontal_padding = 10
+
+    # The distance in pixels from the text to the icon in the horizontal axis.
     text_icon_padding = 0
+
+    # Defines width in pixels of frame around the notification window.
     frame_width = 5
-    frame_color = "#101010"
+
+    # Size of gap to display between notifications.
     gap_size = 0
+
+    # Sets the color of the separator line between two notifications.
     separator_color = frame
+
+    # Display notifications with higher urgency above the others.
     sort = yes
-    idle_threshold = 120
-[global]
-    font = FantasqueSansMNErdFont 10
+
+    # Don't timeout notifications if user is idle longer than this time.
+    idle_threshold = 60s
+
+    # The amount of extra spacing between text lines in pixels.
     line_height = 0
-    markup = full
+
+    # Specifies how the various attributes of the notification
+    # should be formatted on the notification window.
     format = "<span><b>%s %p</b></span>\n%b"
-    alignment = left
+
+    # Defines how the text and icon should be aligned vertically
+    # within the notification.
     vertical_alignment = center
-    show_age_threshold = 60
-    ellipsize = middle
-    ignore_newline = no
+
+    # Show age of message if message is older than this time.
+    show_age_threshold = 60s
+
+    # Replace newline characters in notifications with whitespace.
+    ignore_newline = false
+
+    # Duplicate notifications will be stacked together instead of
+    # being displayed separately.
     stack_duplicates = true
+
+    # Hide the count of stacked duplicate notifications.
     hide_duplicate_count = false
-    show_indicators = yes
-    icon_position = left
-    min_icon_size = 0
-    max_icon_size = 32
-    icon_theme = Adwaita
-    enable_recursive_icon_lookup = true
+
+    # Show an indicator if a notification contains actions and/or openable URLs.
+    show_indicators = true
+
+    # Can be set to a colon-separated list of paths to search for icons
+    # to use with notifications.
+    icon_path = "~/.local/share/icons/Material-Black-Blueberry-Numix-FLAT/16/status/:~/.local/share/icons/Material-Black-Blueberry-Numix-FLAT/16/devices/"
+
+    # If set to true, notifications that have been recalled from history will 
+    # not time out automatically.
     sticky_history = true
+
+    # Maximum number of notifications that will be kept in history.
     history_length = 20
+
+    # Always run rule-defined scripts.
     always_run_script = true
+
+    # Define the corner radius in pixels.
     corner_radius = 0
-    ignore_dbusclose = false
-    force_xinerama = false
+
+    # Defines action of mouse click.
     mouse_left_click = close_current
     mouse_middle_click = do_action, close_current
     mouse_right_click = close_all
 
-[urgency_low]
-    frame_color = "#101010"
-    background  = "#101010"
-    foreground  = "#f7f7f7"
-    timeout = 3
+    # Defines how markup in notifications is handled.
+    markup = full
 
-[urgency_normal]
-    frame_color = "#252525"
-    background  = "#252525"
-    foreground  = "#f7f7f7"
-    timeout = 5
-    override_pause_level = 30
+    # Specifies where truncated lines should be ellipsized.
+    ellipsize = middle
 
-[urgency_critical]
-    timeout = 0
-    frame_color = "#101010"
-    background = "#5e5e5e"
-    foreground = "#101010"
-    override_pause_level = 60
-    default_icon = /usr/share/icons/Adwaita/16x16/status/dialog-warning-symbolic.symbolic.png
+    # Defines how the text should be aligned within the notification.
+    alignment = left
 
 [popup_ignore]
-    appname = popup
-    history_ignore = yes
+    appname = Brightness
+    history_ignore = true
+    hide_text = true
