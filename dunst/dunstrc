@@ -148,4 +148,3 @@
 [popup_ignore]
     appname = Brightness
     history_ignore = true
-    hide_text = true

@@ -10,7 +10,7 @@ du_notify() {
     BRIGHTNESS=$(get_backlight)
     dunstify -a "Brightness" -u low -h string:x-dunst-stack-tag:brightness \
         -i ~/.local/share/icons/Material-Black-Blueberry-Numix-FLAT/48/notifications/notification-display-brightness-full.svg \
-        -h int:value:"${BRIGHTNESS}%" "Value: "
+        -h int:value:"${BRIGHTNESS}%" "Brightness: "
 }
 
 # Increase

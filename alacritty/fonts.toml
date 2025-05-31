@@ -1,22 +1,23 @@
 # font size, measured in points
 [font]
-    size = 13
+    size = 12.5
 
 [font.normal]
-    family = "FantasqueSansMNErdFont"
+    family = "VCROSDMonoNerdFont"
+    style = "Regular"
 
 [font.bold]
-    family = "FantasqueSansMNErdFont"
+    style = "Bold"
 
 [font.italic]
-    family = "FantasqueSansMNErdFont"
+    style = "Italic"
 
 [font.bold_italic]
-    family = "FantasqueSansMNErdFont"
+    style = "Bold Italic"
 
 # Offset is the extra space around each character
 # y: line spacing
 # x: character spacing
 [font.offset]
-    x = 0
-    y = 0
+    x = 1
+    y = 2

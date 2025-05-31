@@ -4,14 +4,14 @@ align=center
 command=$SCRIPT_DIR/$BLOCK_NAME/$BLOCK_NAME
 
 [date]
-command=echo -n '󰃭 '; date '+%a, %d %b, %H:%M'
+command=~/.config/i3/scripts/date.sh
 interval=60
 
 [battery2]
 interval=30
 
 [volume-pulseaudio]
-command=$SCRIPT_DIR/volume-pulseaudio/volume-pulseaudio -H 󰕾 -M 󰖀 -L 󰸈 -X 󰸈 -F '${SYMB} ${VOL}%' -c '#a9a7aa' -C '#a9a7aa'
+command=~/.config/i3/scripts/volume_pulseaudio.sh
 interval=once
 signal=1
 
@@ -21,7 +21,7 @@ interval=once
 signal=2
 
 [memory]
-command=echo -n '󰍛 '; ~/.config/i3blocks/scripts/memory/memory
+command=echo -n '󰍛 '; PERCENT=false ~/.config/i3/scripts/memory.sh
 interval=5
 
 [cpu]
