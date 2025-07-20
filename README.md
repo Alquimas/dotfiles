@@ -44,16 +44,15 @@ I use Debian 12, and I installed most of the dependencies through apt. Below are
 | tmux          | Apt    | 3.3a      |
 | thunar        | Apt    | 4.18.4    |
 | xclip         | Apt    | 0.13      |
-| zoxide        | Cargo  | 0.9.6     |
 
-I also use the [Catppuccin](https://github.com/catppuccin/) theme in most programs that have it. In addition, there are dependencies for GTK and for a font. They are
+In addition, there are dependencies for GTK and for a font. They are
 
     - `Catppuccin-Mocha-Standard-Sky-Dark` theme for GTK.
     - `Material-Black-Blueberry-Numix-FLAT` icon theme for GTK.
     - `Bibata-Modern-Classic` cursor theme for GTK.
-    - `Fantasque Sans Mono` font. I use this font in all applications that allow custom fonts.
+    - `VCROSDMono` font. A patched version of the [VCROSD](https://www.dafont.com/font-comment.php?file=vcr_osd_mono) font.
 
-You can download and use the ones that work best for you, but you will need to manually change them in the configuration files.
+All of these are inside the `resources` folder.
 
 ## APT dependencies
 
