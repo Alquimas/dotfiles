@@ -129,8 +129,6 @@ export FZF_DEFAULT_COMMAND='fd --type f'
 export STARSHIP_CONFIG=~/.config/bash/starship.toml
 eval "$(starship init bash)"
 
-eval "$(zoxide init bash)"
-
 if [ -z "${TMUX}" ] && [ -z "${ZELLIJ}" ]; then
     fastfetch -c ~/.config/bash/small_icon.jsonc
 fi
