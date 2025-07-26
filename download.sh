@@ -35,7 +35,7 @@ sudo apt install -y \
 mkdir -p "${HOME}/install_tmp"
 
 # Install fastfetch
-wget "https://github.com/fastfetch-cli/fastfetch/releases/download/2.48.1/fastfetch-linux-amd64.deb --directory-prefix=${HOME}/install_tmp"
+wget https://github.com/fastfetch-cli/fastfetch/releases/download/2.48.1/fastfetch-linux-amd64.deb --directory-prefix="${HOME}/install_tmp"
 
 sudo dpkg -i "${HOME}/install_tmp/fastfetch-linux-amd64.deb"
 
