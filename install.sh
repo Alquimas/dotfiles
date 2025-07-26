@@ -173,18 +173,18 @@ install_resources() {
     mkdir -p "${HOME}/.local/share/icons"
     mkdir -p "${HOME}/.local/share/themes"
 
-    cp -r '/tmp/temp_resources/fonts/*'  "${HOME}/.local/share/fonts"
-    cp -r '/tmp/temp_resources/icons/*'  "${HOME}/.local/share/icons"
-    cp -r '/tmp/temp_resources/themes/*' "${HOME}/.local/share/themes"
+    cp -r "/tmp/temp_resources/fonts/."  "${HOME}/.local/share/fonts"
+    cp -r "/tmp/temp_resources/icons/."  "${HOME}/.local/share/icons"
+    cp -r "/tmp/temp_resources/themes/." "${HOME}/.local/share/themes"
 
     # Also copy to .fonts, .icons and .themes for legacy reasons
     mkdir -p "${HOME}/.fonts"
     mkdir -p "${HOME}/.icons"
     mkdir -p "${HOME}/.themes"
 
-    cp -r '/tmp/temp_resources/fonts/*'  "${HOME}/.fonts"
-    cp -r '/tmp/temp_resources/icons/*'  "${HOME}/.icons"
-    cp -r '/tmp/temp_resources/themes/*' "${HOME}/.themes"
+    cp -r "/tmp/temp_resources/fonts/."  "${HOME}/.fonts"
+    cp -r "/tmp/temp_resources/icons/."  "${HOME}/.icons"
+    cp -r "/tmp/temp_resources/themes/." "${HOME}/.themes"
 
     rm -r '/tmp/temp_resources'
     echo "Installed the resources!"
