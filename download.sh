@@ -57,3 +57,6 @@ cargo install alacritty
 
 # Install startship
 cargo install starship --locked
+
+# Remove temporary directory
+rm -r "${HOME}/install_tmp"
