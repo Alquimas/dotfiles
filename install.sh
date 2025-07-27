@@ -13,6 +13,12 @@ dotfiles_home_dir=(bash/.bashrc bash/.bash_profile \
 dotfiles_xdg_config_dir=(alacritty dunst gtk-3.0 i3\
     i3blocks picom rofi tmux bash)
 
+if [[ "$EUID" -eq 0 ]]; then
+  echo "This script can't be executed as root user"
+  echo "Use: ./install.sh (without sudo)"
+  exit 1
+fi
+
 # Print usage message.
 usage() {
     local program_name

@@ -2,7 +2,7 @@
 
 if [[ "$EUID" -eq 0 ]]; then
   echo "This script can't be executed as root user"
-  echo "Use: ./install.sh (without sudo)"
+  echo "Use: ./download.sh (without sudo)"
   exit 1
 fi
 
@@ -30,7 +30,8 @@ sudo apt install -y \
     fontconfig \
     cmake \
     libfontconfig1-dev \
-    lightdm
+    lightdm \
+    firefox-esr
 
 mkdir -p "${HOME}/install_tmp"
 
