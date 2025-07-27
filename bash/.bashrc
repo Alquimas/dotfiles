@@ -117,8 +117,10 @@ fi
 export PATH="${PATH}:${HOME}/.cargo/bin"
 export PATH="${PATH}:${HOME}/.local/bin"
 export PATH="${PATH}:/opt/nvim-linux64/bin"
-export PATH="${PATH}:${HOME}/go/bin"
+export PATH="${PATH}:/usr/local/go/bin"
 export PATH="${PATH}:${HOME}/.fzf/bin"
+
+export EDITOR=nvim
 
 eval "$(fzf --bash)"
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
@@ -126,8 +128,6 @@ export FZF_DEFAULT_COMMAND='fd --type f'
 
 export STARSHIP_CONFIG=~/.config/bash/starship.toml
 eval "$(starship init bash)"
-
-eval "$(zoxide init bash)"
 
 if [ -z "${TMUX}" ] && [ -z "${ZELLIJ}" ]; then
     fastfetch -c ~/.config/bash/small_icon.jsonc

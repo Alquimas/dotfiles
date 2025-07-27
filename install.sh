@@ -1,15 +1,23 @@
 #!/usr/bin/env bash
-# Based on the install script from 
+# Based on the install script from
 # https://github.com/dikiaap/dotfiles/blob/master/install.sh
 
 blue='\e[1;34m'
 red='\e[1;31m'
 white='\e[0;37m'
 dotfiles_repo_dir=$(pwd)
+dotfiles_final_dir="${HOME}/dotfiles"
 backup_dir="${HOME}/.dotfiles_backup"
-dotfiles_home_dir=(bash/.bashrc bash/.bash_profile bash/.bash_aliases)
+dotfiles_home_dir=(bash/.bashrc bash/.bash_profile \
+    bash/.bash_aliases xorg/.Xresources)
 dotfiles_xdg_config_dir=(alacritty dunst gtk-3.0 i3\
     i3blocks picom rofi tmux bash)
+
+if [[ "$EUID" -eq 0 ]]; then
+  echo "This script can't be executed as root user"
+  echo "Use: ./install.sh (without sudo)"
+  exit 1
+fi
 
 # Print usage message.
 usage() {
@@ -65,6 +73,35 @@ backup_dotfiles() {
     fi
 }
 
+move_dotfiles() {
+    # Copy dotfiles to ${HOME}/dotfiles/ directory.
+
+    # Check if the dotfiles directory exists
+    if [ -d "${dotfiles_final_dir}" ]; then
+        # Generate a random number
+        RANDOM_NUM=$((RANDOM % 10000))
+
+        # Define the new directory name with the random number
+        OLD_DOTFILES_DIR="${HOME}/old_dotfiles_${RANDOM_NUM}"
+
+        # Rename the existing dotfiles directory
+        mv "${dotfiles_final_dir}" "$OLD_DOTFILES_DIR"
+
+        echo "Moved existing dotfiles directory to ${OLD_DOTFILES_DIR}"
+    fi
+
+    # Create the new dotfiles directory
+    mkdir -p "$DOTFILES_DIR"
+
+    # Move all contents from the current directory to the new dotfiles directory
+    mv "${dotfiles_repo_dir}/*" "$DOTFILES_DIR" 2>/dev/null
+    mv "${dotfiles_repo_dir}/.[^.]*" "$DOTFILES_DIR" 2>/dev/null
+    echo "Created new dotfiles directory and moved contents from $(pwd) to\
+${dotfiles_final_dir}"
+    echo "Don't remove the contents of ${dotfiles_final_dir} before removing \
+the symlinks first, because this will break your system."
+}
+
 install_dotfiles() {
     # Create a backup
     backup_dotfiles
@@ -85,6 +122,9 @@ install_dotfiles() {
         env ln -fs "${dotfiles_repo_dir}/${dots_xdg_conf}" \
             "${HOME}/.config/${dots_xdg_conf}"
     done
+
+    # Move dotfiles to the correct place
+    move_dotfiles
 
     echo -e "${blue}New dotfiles is installed!\n${white}" >&2
     echo "There may be some errors when Terminal is restarted." >&2
@@ -130,6 +170,34 @@ uninstall_dotfiles() {
     fi
 }
 
+install_resources() {
+    mkdir -p '/tmp/temp_resources'
+    cp "${dotfiles_repo_dir}/resources/resources.tar.gz" '/tmp/temp_resources'
+    tar -xzf '/tmp/temp_resources/resources.tar.gz' -C '/tmp/temp_resources'
+
+    mkdir -p "${HOME}/.local/share/fonts"
+    mkdir -p "${HOME}/.local/share/icons"
+    mkdir -p "${HOME}/.local/share/themes"
+
+    cp -r "/tmp/temp_resources/fonts/."  "${HOME}/.local/share/fonts"
+    cp -r "/tmp/temp_resources/icons/."  "${HOME}/.local/share/icons"
+    cp -r "/tmp/temp_resources/themes/." "${HOME}/.local/share/themes"
+
+    # Also copy to .fonts, .icons and .themes for legacy reasons
+    mkdir -p "${HOME}/.fonts"
+    mkdir -p "${HOME}/.icons"
+    mkdir -p "${HOME}/.themes"
+
+    cp -r "/tmp/temp_resources/fonts/."  "${HOME}/.fonts"
+    cp -r "/tmp/temp_resources/icons/."  "${HOME}/.icons"
+    cp -r "/tmp/temp_resources/themes/." "${HOME}/.themes"
+
+    rm -r '/tmp/temp_resources'
+    echo "Installed the resources!"
+    echo "They are in the folders fonts, icons and themes under\
+~/.local/share and .fonts, .icons and .themes under ~."
+}
+
 main() {
     case "$1" in
         ''|-h|--help)
@@ -138,6 +206,7 @@ main() {
             ;;
         -i)
             install_dotfiles
+            install_resources
             ;;
         -r)
             uninstall_dotfiles

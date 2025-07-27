@@ -1,6 +1,5 @@
 configuration {
     modi: "run,drun";
-    font: "ComicShannsMonoNerdFont 8";
     icon-theme: "Oranchelo";
     show-icons: true;
     terminal: "alacritty";
@@ -13,5 +12,5 @@ configuration {
     display-Network: " 󰤨  Network";
     sidebar-mode: true;
 }
-
-@theme "~/.dotfiles/rofi/catppuccin-mocha.rasi"
+@import "~/.config/rofi/fonts.rasi"
+@theme "~/.config/rofi/colors.rasi"
