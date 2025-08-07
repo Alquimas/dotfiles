@@ -64,8 +64,8 @@ sudo apt install git
 git clone https://github.com/alquimas/dotfiles .dotfiles && cd .dotfiles
 chmod +x download.sh
 ./download.sh
-chmod +x install.sh -i
-./install.sh
+chmod +x install.sh
+./install.sh -i
 ```
 
 Then reboot the system.
