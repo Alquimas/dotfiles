@@ -59,6 +59,7 @@ At the root of the repository, there are two scripts: `download.sh` and `install
 This process can be automated with:
 
 ```bash
+cd
 sudo apt update
 sudo apt install git
 git clone https://github.com/alquimas/dotfiles .dotfiles && cd .dotfiles

@@ -6,7 +6,7 @@ blue='\e[1;34m'
 red='\e[1;31m'
 white='\e[0;37m'
 dotfiles_repo_dir=$(pwd)
-dotfiles_final_dir="${HOME}/dotfiles"
+dotfiles_final_dir="${HOME}/.dotfiles"
 backup_dir="${HOME}/.dotfiles_backup"
 dotfiles_home_dir=(bash/.bashrc bash/.bash_profile \
     bash/.bash_aliases xorg/.Xresources)
