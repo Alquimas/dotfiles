@@ -15,8 +15,40 @@ update_and_wait() {
 
 while true; do
 
-    STATUS=$(cat "${BATTERY_PATH}/BAT0/status")
-    CAPACITY=$(cat "${BATTERY_PATH}/BAT0/capacity")
+    BATTERIES=($(find -L "${BATTERY_PATH}" -maxdepth 1 -type d -name "BAT*"))
+    total_energy_now=0
+    total_energy_full=0
+    overall_status="Unknown"
+
+    for BAT in "${BATTERIES[@]}"; do
+        status=$(<"${BAT}/status")
+        if [[ -f "${BAT}/energy_now" && -f "${BAT}/energy_full" ]]; then
+            now=$(<"${BAT}/energy_now")
+            full=$(<"${BAT}/energy_full")
+        elif [[ -f "${BAT}/charge_now" && -f "${BAT}/charge_full" ]]; then
+            now=$(<"${BAT}/charge_now")
+            full=$(<"${BAT}/charge_full")
+        else
+            now=$(<"${BAT}/capacity")
+            full=100
+        fi
+        (( total_energy_now += now ))
+        (( total_energy_full += full ))
+
+        case "$status" in
+            "Charging") overall_status="Charging" ;;
+            "Full") [[ "$overall_status" != "Charging" ]] && overall_status="Full" ;;
+            "Discharging") [[ "$overall_status" != "Charging" && "$overall_status" != "Full" ]] && overall_status="Discharging" ;;
+        esac
+    done
+
+    if (( total_energy_full > 0 )); then
+        CAPACITY=$(( total_energy_now * 100 / total_energy_full ))
+    else
+        CAPACITY=0
+    fi
+
+    STATUS="${overall_status}"
 
     if [[ ${STATUS} = "Charging" ]]; then
 
