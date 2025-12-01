@@ -4,16 +4,6 @@
 
 [font.normal]
     family = "VCROSDMonoNerdFont"
-    style = "Regular"
-
-[font.bold]
-    style = "Bold"
-
-[font.italic]
-    style = "Italic"
-
-[font.bold_italic]
-    style = "Bold Italic"
 
 # Offset is the extra space around each character
 # y: line spacing

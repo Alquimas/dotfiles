@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Set path of script
+# Encontra o caminho absoluto desse script
 PLUGIN_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 # import
@@ -21,6 +21,7 @@ main() {
 
   # module directories
   local custom_path modules_custom_path modules_status_path modules_window_path modules_pane_path
+  # Get the value of the variable @catppuccin_custom_plugin_dir or defaults to ${PLUGIN_DIR}/custom
   custom_path="$(get_tmux_option "@catppuccin_custom_plugin_dir" "${PLUGIN_DIR}/custom")"
   modules_custom_path=$custom_path
   modules_status_path=$PLUGIN_DIR/status
@@ -29,11 +30,13 @@ main() {
 
   # load local theme
   local theme
+  # Get the value of the variable @catppuccin_flavour or defaults to mocha
   theme="$(get_tmux_option "@catppuccin_flavour" "mocha")"
   # NOTE: Pulling in the selected theme by the theme that's being set as local
   # variables.
   # https://github.com/dylanaraps/pure-sh-bible#parsing-a-keyval-file
   # shellcheck source=./catppuccin-frappe.tmuxtheme
+  # Get the value of the key val pairs inside the theme file
   while IFS='=' read -r key val; do
     # Skip over lines containing comments.
     # (Lines starting with '#').
@@ -119,7 +122,7 @@ main() {
   # status module
   local status_left_separator status_right_separator status_connect_separator \
     status_fill status_modules_left status_modules_right
-  status_left_separator=$(get_tmux_option "@catppuccin_status_left_separator" "")
+  status_left_separator=$(get_tmux_option "@catppuccin_status_left_separator" "█")
   status_right_separator=$(get_tmux_option "@catppuccin_status_right_separator" "█")
   status_connect_separator=$(get_tmux_option "@catppuccin_status_connect_separator" "yes")
   status_fill=$(get_tmux_option "@catppuccin_status_fill" "icon")
