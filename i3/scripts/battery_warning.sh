@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+set -euo pipefail
+IFS=$'\n\t'
+LANG=C
 
 LAST_STATUS="Charging"
 LAST_CAPACITY="100"

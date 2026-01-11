@@ -52,7 +52,6 @@ function notify_volume() {
 }
 
 function treat_event() {
-    pkill -RTMIN+1 i3blocks
 
     local current_sink current_volume current_mute
     current_sink="$(get_sink_name)"

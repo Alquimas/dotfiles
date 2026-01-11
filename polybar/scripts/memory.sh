@@ -1,4 +1,7 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -euo pipefail
+IFS=$'\n\t'
+LANG=C
 
 TYPE="${BLOCK_INSTANCE:-mem}"
 PERCENT="${PERCENT:-true}"

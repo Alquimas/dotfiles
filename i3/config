@@ -14,14 +14,15 @@ floating_modifier $mod
 for_window [class = "Nm-connection-editor"] floating enable
 
 # startup aplicattions
-exec --no-startup-id feh --bg-fill ~/.config/i3/wallpaper.png
+exec --no-startup-id feh --bg-fill $HOME/.config/i3/wallpaper.png
 exec --no-startup-id $HOME/.config/i3/scripts/battery_warning.sh
 exec --no-startup-id $HOME/.config/i3/scripts/volume_deamon.sh
+exec --no-startup-id $HOME/.config/i3/scripts/brightness_deamon.sh
 exec --no-startup-id dunst
 exec --no-startup-id nm-applet
-exec --no-startup-id blueman-applet
 exec --no-startup-id xautolock -time 10 -locker "light-locker"
 exec --no-startup-id xss-lock -- light-locker
 exec --no-startup-id playerctld daemon
 exec_always --no-startup-id $HOME/.config/i3/scripts/set_wallpaper.sh
 exec_always --no-startup-id picom
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
