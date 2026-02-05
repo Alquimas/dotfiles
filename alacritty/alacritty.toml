@@ -12,7 +12,7 @@
 
     [window.padding]
         x = 0
-        y = 10
+        y = 0
 
 [scrolling]
     history = 5_000

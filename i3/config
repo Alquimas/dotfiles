@@ -10,19 +10,17 @@ include ~/.config/i3/config_files/fonts.conf
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
-# make Gnome-screenshot open only in floating window mode
 for_window [class = "Nm-connection-editor"] floating enable
+for_window [class = "Alacritty-float"] floating enable
 
 # startup aplicattions
-exec --no-startup-id feh --bg-fill $HOME/.config/i3/wallpaper.png
 exec --no-startup-id $HOME/.config/i3/scripts/battery_warning.sh
 exec --no-startup-id $HOME/.config/i3/scripts/volume_deamon.sh
 exec --no-startup-id $HOME/.config/i3/scripts/brightness_deamon.sh
 exec --no-startup-id dunst
 exec --no-startup-id nm-applet
-exec --no-startup-id xautolock -time 10 -locker "light-locker"
-exec --no-startup-id xss-lock -- light-locker
-exec --no-startup-id playerctld daemon
+exec --no-startup-id xautolock -time 5 -locker "light-locker"
+exec --no-startup-id xss-lock --transfer-sleep-lock -- light-locker
 exec_always --no-startup-id $HOME/.config/i3/scripts/set_wallpaper.sh
 exec_always --no-startup-id picom
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh

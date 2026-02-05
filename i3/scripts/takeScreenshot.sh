@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-time=$(date +%Y_%m_%d-%T)
+time=$(date +%Y_%m_%d-%T_%3N)
 directory="$(xdg-user-dir PICTURES)/Screenshots"
-file="screenshot_from-${time}.png"
+file="${time}.png"
 notify_cmd='dunstify -a "popup" -h string:x-dunst-stack-tag:takescreenshot -i ~/.local/share/icons/Material-Black-Blueberry-Numix-FLAT/16/mimetypes/image-png.svg Screenshot'
 
 # if the screenshots directory dont exists, create it

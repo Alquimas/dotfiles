@@ -124,7 +124,7 @@ export EDITOR=nvim
 
 eval "$(fzf --bash)"
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
-export FZF_DEFAULT_COMMAND='fd --type f'
+export FZF_DEFAULT_COMMAND='fdfind --type f'
 
 export STARSHIP_CONFIG=~/.config/bash/starship.toml
 eval "$(starship init bash)"
