@@ -32,7 +32,9 @@ check_dependencies() {
 }
 
 main() {
-    killall -q polybar
+    echo "a1"
+    killall -q polybar || true
+    echo "a2"
 
     echo "---" | tee -a /tmp/polybar.log
     polybar mybar 2>&1 | tee -a /tmp/polybar.log & disown
