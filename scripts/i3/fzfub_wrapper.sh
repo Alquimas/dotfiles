@@ -10,4 +10,4 @@
     --class="Alacritty-float" \
     --option='window.dimensions.lines=18' \
     --option='window.opacity=1' \
-    -e "${HOME}/.config/i3/scripts/fzfub.sh" \
+    -e "${HOME}/.config/scripts/i3/fzfub.sh"

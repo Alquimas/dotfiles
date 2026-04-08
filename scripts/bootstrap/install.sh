@@ -5,17 +5,18 @@
 blue='\e[1;34m'
 red='\e[1;31m'
 white='\e[0;37m'
-dotfiles_repo_dir=$(pwd)
+script_dir=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+dotfiles_repo_dir=$(cd "${script_dir}/../.." && pwd)
 dotfiles_final_dir="${HOME}/.dotfiles"
 backup_dir="${HOME}/.dotfiles_backup"
 dotfiles_home_dir=(bash/.bashrc bash/.bash_profile \
     bash/.bash_aliases xorg/.Xresources)
 dotfiles_xdg_config_dir=(alacritty dunst gtk-3.0 i3\
-    i3blocks picom rofi tmux bash)
+    i3blocks picom polybar rofi scripts tmux bash)
 
 if [[ "$EUID" -eq 0 ]]; then
   echo "This script can't be executed as root user"
-  echo "Use: ./install.sh (without sudo)"
+  echo "Use: ./scripts/bootstrap/install.sh (without sudo)"
   exit 1
 fi
 
@@ -74,32 +75,12 @@ backup_dotfiles() {
 }
 
 move_dotfiles() {
-    # Copy dotfiles to ${HOME}/dotfiles/ directory.
-
-    # Check if the dotfiles directory exists
-    if [ -d "${dotfiles_final_dir}" ]; then
-        # Generate a random number
-        RANDOM_NUM=$((RANDOM % 10000))
-
-        # Define the new directory name with the random number
-        OLD_DOTFILES_DIR="${HOME}/old_dotfiles_${RANDOM_NUM}"
-
-        # Rename the existing dotfiles directory
-        mv "${dotfiles_final_dir}" "$OLD_DOTFILES_DIR"
-
-        echo "Moved existing dotfiles directory to ${OLD_DOTFILES_DIR}"
+    if [ "${dotfiles_repo_dir}" != "${dotfiles_final_dir}" ]; then
+        echo "Dotfiles repository detected at ${dotfiles_repo_dir}."
+        echo "The generated symlinks will point there."
+        echo "If you want the canonical location, move the repository to \
+${dotfiles_final_dir} before reinstalling."
     fi
-
-    # Create the new dotfiles directory
-    mkdir -p "$DOTFILES_DIR"
-
-    # Move all contents from the current directory to the new dotfiles directory
-    mv "${dotfiles_repo_dir}/*" "$DOTFILES_DIR" 2>/dev/null
-    mv "${dotfiles_repo_dir}/.[^.]*" "$DOTFILES_DIR" 2>/dev/null
-    echo "Created new dotfiles directory and moved contents from $(pwd) to\
-${dotfiles_final_dir}"
-    echo "Don't remove the contents of ${dotfiles_final_dir} before removing \
-the symlinks first, because this will break your system."
 }
 
 install_dotfiles() {
@@ -131,7 +112,7 @@ install_dotfiles() {
     echo "Please read carefully the error messages and make sure \
 all packages are installed. See more info in README.md." >&2
     echo -e "If you want to restore your old config, you can use \
-${red}./install.sh -r${white} command." >&2
+${red}./scripts/bootstrap/install.sh -r${white} command." >&2
 }
 
 uninstall_dotfiles() {

@@ -8,7 +8,7 @@ LAST_CAPACITY="100"
 STATUS=""
 CAPACITY=""
 BATTERY_PATH="/sys/class/power_supply"
-SOUND="${HOME}/.config/i3/scripts/battery_warning.wav"
+SOUND="${HOME}/.config/scripts/i3/battery_warning.wav"
 
 update_and_wait() {
     LAST_STATUS=${STATUS}

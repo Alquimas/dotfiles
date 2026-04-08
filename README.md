@@ -51,10 +51,10 @@ All of these are inside the `resources` folder.
 
 ## Download and installation
 
-At the root of the repository, there are two scripts: `download.sh` and `install.sh`:
+The bootstrap scripts are in `scripts/bootstrap`:
 
-- **download.sh** installs the necessary dependencies, whether they are from APT or not, like fzf and alacritty.
-- **install.sh** simply creates the symlinks that point to the files inside the repository where the system expects to find the files, and decompress the resources in the correct folders. It also creates a simple backup of your current configuration, and allows you to restore it if something goes wrong.
+- **scripts/bootstrap/download.sh** installs the necessary dependencies, whether they are from APT or not, like fzf and alacritty.
+- **scripts/bootstrap/install.sh** simply creates the symlinks that point to the files inside the repository where the system expects to find the files, and decompress the resources in the correct folders. It also creates a simple backup of your current configuration, and allows you to restore it if something goes wrong.
 
 This process can be automated with:
 
@@ -63,10 +63,10 @@ cd
 sudo apt update
 sudo apt install git
 git clone https://github.com/alquimas/dotfiles .dotfiles && cd .dotfiles
-chmod +x download.sh
-./download.sh
-chmod +x install.sh
-./install.sh -i
+chmod +x scripts/bootstrap/download.sh
+./scripts/bootstrap/download.sh
+chmod +x scripts/bootstrap/install.sh
+./scripts/bootstrap/install.sh -i
 ```
 
 Then reboot the system.
