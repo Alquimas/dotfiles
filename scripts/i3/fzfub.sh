@@ -4,35 +4,35 @@
 # You can find it here:
 # https://github.com/BreadOnPenguins/scripts/blob/master/images-photos-wallpapers/fzfub
 
-check_dependencies () {
-    CMDS=(fdfind fzf ueberzugpp xclip notify-send gimp)
+usage() {
+    cat <<'EOF'
+Usage: fzfub.sh [-h] [-e]
 
-    missing_cmds=()
-    for cmd in "${CMDS[@]}"; do
+  -h    Show this message.
+  -e    Check script dependencies and exit.
+EOF
+}
+
+check_dependencies() {
+    local cmds=(fdfind fzf ueberzugpp xclip notify-send gimp mktemp xdg-user-dir sh rm cat setsid)
+    local missing_cmds=()
+
+    for cmd in "${cmds[@]}"; do
         if ! command -v "$cmd" >/dev/null 2>&1; then
             missing_cmds+=("$cmd")
         fi
     done
 
-    if [ ${#missing_cmds[@]} -ne 0 ]; then
+    if (( ${#missing_cmds[@]} > 0 )); then
         echo "Error: The following dependencies are missing:" >&2
-        printf "   - %s\n" "${missing_cmds[@]}" >&2
+        printf '   - %s\n' "${missing_cmds[@]}" >&2
         exit 1
     fi
 
-    echo "Success: All dependencies (${#CMDS[@]}) are met."
+    echo "Success: All dependencies (${#cmds[@]}) are met."
 }
 
-usage () {
-    cat << EOF
-Usage: fzfub [-h] [-e]
-
-  -h		Show this message.
-  -e		Test if the script dependencies are present.
-EOF
-}
-
-main () {
+main() {
     UB_PID_FILE=$(mktemp)
     cleanup() {
         ueberzugpp cmd -s "${SOCKET}" -a exit
@@ -90,7 +90,7 @@ ctrl-d:execute(rm {+} && notify-send \"Deleted\" \"$(printf '%s ' \{+\})\")+relo
     ueberzugpp cmd -s "$SOCKET" -a exit
 }
 
-while getopts 'he' opt; do
+while getopts ':he' opt; do
     case ${opt} in
         h)
             usage
@@ -106,5 +106,11 @@ while getopts 'he' opt; do
         ;;
     esac
 done
+shift $((OPTIND - 1))
+
+if (( $# > 0 )); then
+    usage
+    exit 1
+fi
 
 main

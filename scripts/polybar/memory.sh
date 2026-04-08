@@ -3,12 +3,41 @@ set -euo pipefail
 IFS=$'\n\t'
 LANG=C
 
-TYPE="${BLOCK_INSTANCE:-mem}"
-PERCENT="${PERCENT:-true}"
+usage() {
+    cat <<'EOF'
+Usage: memory.sh [-h] [-e]
 
-awk -v type="$TYPE" -v percent="$PERCENT" '
+  -h    Show this message.
+  -e    Check script dependencies and exit.
+EOF
+}
+
+check_dependencies() {
+    local cmds=(awk)
+    local missing_cmds=()
+
+    for cmd in "${cmds[@]}"; do
+        if ! command -v "$cmd" >/dev/null 2>&1; then
+            missing_cmds+=("$cmd")
+        fi
+    done
+
+    if (( ${#missing_cmds[@]} > 0 )); then
+        echo "Error: The following dependencies are missing:" >&2
+        printf '   - %s\n' "${missing_cmds[@]}" >&2
+        exit 1
+    fi
+
+    echo "Success: All dependencies (${#cmds[@]}) are met."
+}
+
+main() {
+    local type="${BLOCK_INSTANCE:-mem}"
+    local percent="${PERCENT:-true}"
+
+    awk -v type="${type}" -v percent="${percent}" '
 BEGIN {
-    kib_to_gib = 1024 * 1024  # Use binary units (GiB)
+    kib_to_gib = 1024 * 1024
 }
 /^MemTotal:/      { mem_total = $2 }
 /^MemFree:/       { mem_free  = $2 }
@@ -23,7 +52,6 @@ END {
         used = (swap_total - swap_free) / kib_to_gib
         total = swap_total / kib_to_gib
     } else {
-        # Prefer MemAvailable if present
         if (mem_avail > 0) {
             used = (mem_total - mem_avail) / kib_to_gib
         } else {
@@ -42,3 +70,29 @@ END {
     }
 }
 ' /proc/meminfo
+}
+
+while getopts ':he' opt; do
+    case "${opt}" in
+        h)
+            usage
+            exit 0
+            ;;
+        e)
+            check_dependencies
+            exit 0
+            ;;
+        \?)
+            usage
+            exit 1
+            ;;
+    esac
+done
+shift $((OPTIND - 1))
+
+if (( $# > 0 )); then
+    usage
+    exit 1
+fi
+
+main
