@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
 IFS=$'\n\t'
-LANG=C
 
 TARGET_SCRIPT="${HOME}/.config/scripts/i3/fzftmux.sh"
 ALACRITTY_BIN="${HOME}/.cargo/bin/alacritty"
@@ -38,9 +37,6 @@ check_dependencies() {
 
 main() {
     "${ALACRITTY_BIN}" \
-        --class="Alacritty-float" \
-        --option='window.dimensions.lines=18' \
-        --option='window.opacity=1' \
         -e "${TARGET_SCRIPT}"
 }
 
