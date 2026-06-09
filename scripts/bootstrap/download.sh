@@ -10,7 +10,7 @@ if [[ "$EUID" -eq 0 ]]; then
   exit 1
 fi
 
-for cmd in sudo apt wget dpkg; do
+for cmd in sudo wget curl git; do
   command -v "$cmd" >/dev/null 2>&1 || {
     echo "Missing required command: $cmd" >&2
     exit 1
@@ -25,53 +25,48 @@ cleanup() {
 }
 trap cleanup EXIT
 
-# Apt dependencies
-sudo apt update
-sudo apt install -y \
-    brightnessctl \
-    dunst \
-    feh \
-    git \
-    i3-wm \
-    i3blocks \
-    libgtk-3-0 \
-    maim \
-    rofi \
-    picom \
-    redshift \
-    tmux \
-    thunar \
-    xclip \
-    curl \
-    gcc \
-    g++ \
-    pkg-config \
-    fontconfig \
-    cmake \
-    libfontconfig1-dev \
-    lightdm \
-    firefox-esr
+if command -v apt-get >/dev/null 2>&1; then
+  echo "--> Debian-based system detected."
 
-wget -q --show-progress --https-only --secure-protocol=TLSv1_2 \
+  sudo apt update
+  sudo apt install -y \
+    brightnessctl dunst feh git i3-wm i3blocks libgtk-3-0 maim \
+    rofi picom redshift tmux thunar xclip curl gcc g++ pkg-config \
+    fontconfig cmake libfontconfig1-dev lightdm firefox-esr fzf
+
+  wget -q --show-progress --https-only --secure-protocol=TLSv1_2 \
     -O "${TMP_DIR}/fastfetch.deb" \
     "https://github.com/fastfetch-cli/fastfetch/releases/download/2.48.1/fastfetch-linux-amd64.deb"
+  sudo dpkg -i "${TMP_DIR}/fastfetch.deb"
 
-sudo dpkg -i "${TMP_DIR}/fastfetch.deb"
+elif command -v pacman >/dev/null 2>&1; then
+  echo "--> Arch-based system detected."
 
-if [[ ! -d "$HOME/.fzf" ]]; then
-  git clone --depth 1 https://github.com/junegunn/fzf.git "${HOME}/.fzf"
-  "${HOME}/.fzf/install" --all
+  sudo pacman -Sy --noconfirm
+  sudo pacman -S --noconfirm \
+    brightnessctl dunst feh git i3-wm i3blocks gtk3 maim \
+    rofi picom redshift tmux thunar xclip curl gcc pkgconf \
+    fontconfig cmake lightdm firefox fastfetch fzf ueberzugpp \
+    gimp xdg-user-dirs xorg-xset xdotool sysstat tree-sitter-cli \
+    unzip pulseaudio network-manager-applet
+else
+  echo "Error: Neither apt nor pacman found. Unsupported distribution." >&2
+  exit 1
 fi
 
 curl --proto '=https' --tlsv1.2 -sSf \
     https://sh.rustup.rs -o "${TMP_DIR}/rustup-init.sh"
 
 chmod +x "${TMP_DIR}/rustup-init.sh"
-
 "${TMP_DIR}/rustup-init.sh" -y
 
-source "${HOME}/.cargo/env"
+if [ -f "${HOME}/.cargo/env" ]; then
+  source "${HOME}/.cargo/env"
+fi
 
 cargo install alacritty
-
 cargo install starship --locked
+cargo install fd-find
+
+sudo usermod -aG audio $(whoami)
+sudo usermod -aG video $(whoami)

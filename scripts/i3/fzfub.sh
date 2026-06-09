@@ -14,7 +14,7 @@ EOF
 }
 
 check_dependencies() {
-    local cmds=(fdfind fzf ueberzugpp xclip notify-send gimp mktemp xdg-user-dir sh rm cat setsid)
+    local cmds=(fd fzf ueberzugpp xclip notify-send gimp mktemp xdg-user-dir sh rm cat setsid)
     local missing_cmds=()
 
     for cmd in "${cmds[@]}"; do
@@ -52,7 +52,7 @@ main() {
 
     DIRECTORY="$(xdg-user-dir PICTURES)/Screenshots"
 
-    LIST_CMD="fdfind \
+    LIST_CMD="fd \
         --type f \
         --absolute-path \
         --extension png \
