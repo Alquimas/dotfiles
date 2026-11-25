@@ -32,7 +32,8 @@ if command -v apt-get >/dev/null 2>&1; then
   sudo apt install -y \
     brightnessctl dunst feh git i3-wm i3blocks libgtk-3-0 maim \
     rofi picom redshift tmux thunar xclip curl gcc g++ pkg-config \
-    fontconfig cmake libfontconfig1-dev lightdm firefox-esr fzf
+    fontconfig cmake libfontconfig1-dev libx11-dev libxcb1-dev \
+    libx11-xcb-dev libxcursor-dev lightdm firefox-esr fzf
 
   wget -q --show-progress --https-only --secure-protocol=TLSv1_2 \
     -O "${TMP_DIR}/fastfetch.deb" \
@@ -46,7 +47,7 @@ elif command -v pacman >/dev/null 2>&1; then
   sudo pacman -S --noconfirm \
     brightnessctl dunst feh git i3-wm i3blocks gtk3 maim \
     rofi picom redshift tmux thunar xclip curl gcc pkgconf \
-    fontconfig cmake lightdm firefox fastfetch fzf ueberzugpp \
+    fontconfig cmake libx11 libxcb libxcursor lightdm firefox fastfetch fzf ueberzugpp \
     gimp xdg-user-dirs xorg-xset xdotool sysstat tree-sitter-cli \
     unzip pulseaudio network-manager-applet
 else
