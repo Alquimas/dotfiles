@@ -67,6 +67,7 @@ fi
 cargo install alacritty
 cargo install starship --locked
 cargo install fd-find
+cargo install --git https://github.com/Alquimas/xcolor.git --branch master
 
 sudo usermod -aG audio $(whoami)
 sudo usermod -aG video $(whoami)
