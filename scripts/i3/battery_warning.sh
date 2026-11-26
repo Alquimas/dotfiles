@@ -117,6 +117,7 @@ main() {
         fi
 
         if [[ ${LAST_STATUS} = "Discharging" && ${LAST_CAPACITY} -le 5 ]]; then
+            update_and_wait
             continue
         fi
 

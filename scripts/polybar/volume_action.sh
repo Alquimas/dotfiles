@@ -41,17 +41,27 @@ move_sinks_to_new_default() {
 set_default_playback_device_next() {
     local inc=${1:-1}
     local current
-    local idx=0
+    local idx=-1
     local new_index
+    local sink_list
 
-    mapfile -t sinks < <(pactl list short sinks | awk '{print $1}')
+    sink_list=$(pactl list short sinks)
+    mapfile -t sinks < <(awk 'NF >= 2 {print $2}' <<< "${sink_list}")
+    if (( ${#sinks[@]} == 0 )); then
+        echo "No audio outputs available." >&2
+        return 1
+    fi
 
     current=$(pactl get-default-sink)
     for i in "${!sinks[@]}"; do
         [[ "${sinks[$i]}" == "${current}" ]] && idx=${i} && break
     done
 
-    new_index=$(( (idx + inc + ${#sinks[@]}) % ${#sinks[@]} ))
+    if (( idx < 0 )); then
+        new_index=$(( inc > 0 ? 0 : ${#sinks[@]} - 1 ))
+    else
+        new_index=$(( (idx + inc + ${#sinks[@]}) % ${#sinks[@]} ))
+    fi
     pactl set-default-sink "${sinks[$new_index]}"
     move_sinks_to_new_default
 }

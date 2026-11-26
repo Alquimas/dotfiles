@@ -51,12 +51,9 @@ main() {
     export SOCKET=/tmp/ueberzugpp-"$UB_PID".socket
 
     DIRECTORY="$(xdg-user-dir PICTURES)/Screenshots"
+    export DIRECTORY
 
-    LIST_CMD="fd \
-        --type f \
-        --absolute-path \
-        --extension png \
-        . ${DIRECTORY}"
+    LIST_CMD='fd --type f --absolute-path --extension png . "$DIRECTORY"'
 
     export LIST_CMD
 

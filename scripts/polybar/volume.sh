@@ -13,7 +13,7 @@ EOF
 }
 
 check_dependencies() {
-    local cmds=(pactl awk tr sleep)
+    local cmds=(pactl awk sleep)
     local missing_cmds=()
 
     for cmd in "${cmds[@]}"; do
@@ -32,20 +32,23 @@ check_dependencies() {
 }
 
 get_sink_vol() {
-    pactl get-sink-volume @DEFAULT_SINK@ \
-        | awk '/front-left:/ {print $5}' | tr -d '%'
+    pactl get-sink-volume @DEFAULT_SINK@ 2>/dev/null \
+        | awk '{ for (i = 1; i <= NF; i++) if ($i ~ /^[0-9]+%$/) { sub(/%$/, "", $i); print $i; exit } }'
 }
 
 get_sink_mute() {
-    pactl get-sink-mute @DEFAULT_SINK@ | awk '{print $2}'
+    pactl get-sink-mute @DEFAULT_SINK@ 2>/dev/null | awk '{print $2}'
 }
 
 print_volume() {
     local vol
     local mute
 
-    vol=$(get_sink_vol)
-    mute=$(get_sink_mute)
+    if ! vol=$(get_sink_vol) || [[ ! ${vol} =~ ^[0-9]+$ ]]; then
+        printf "%s N/A\n" "${AUDIO_MUTED_SYMBOL}"
+        return
+    fi
+    mute=$(get_sink_mute) || mute=""
 
     if [[ "${mute}" == "yes" ]]; then
         printf "%s%3d%%\n" "${AUDIO_MUTED_SYMBOL}" "${vol}"
@@ -75,7 +78,7 @@ main() {
                     print_volume || true
                     ;;
             esac
-        done
+        done || true
 
         sleep 1
     done
