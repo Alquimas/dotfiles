@@ -14,7 +14,7 @@ EOF
 }
 
 check_dependencies() {
-    local cmds=(find tmux)
+    local cmds=(find tmux fzf basename tr pgrep)
     local missing_cmds=()
 
     for cmd in "${cmds[@]}"; do
@@ -25,7 +25,7 @@ check_dependencies() {
 
     if (( ${#missing_cmds[@]} > 0 )); then
         echo "Error: The following dependencies are missing:" >&2
-        print '   - %s\n' "${missing_cmds[@]}" >&2
+        printf '   - %s\n' "${missing_cmds[@]}" >&2
         exit 1
     fi
 

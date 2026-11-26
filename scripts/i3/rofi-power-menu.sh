@@ -28,12 +28,12 @@ Available options:
   -e                   Check script dependencies and exit.
   --dry-run            Don't perform the selected action but print it to stderr.
   --choices CHOICES    Show only the selected choices in the given order. Use /
-                       as the separator. Available choices are lockscreen,
-                       logout, suspend, hibernate, reboot and shutdown. By
+                       as the separator. Available choices are logout,
+                       suspend, reboot and shutdown. By
                        default, all available choices are shown.
   --confirm CHOICES    Require confirmation for the given choices only. Use /
-                       as the separator. Available choices are lockscreen,
-                       logout, suspend, hibernate, reboot and shutdown. By
+                       as the separator. Available choices are logout,
+                       suspend, reboot and shutdown. By
                        default, only irreversible actions logout, reboot and
                        shutdown require confirmation.
   --choose CHOICE      Preselect the given choice and only ask for a
@@ -45,7 +45,7 @@ EOF
 }
 
 check_dependencies() {
-    local cmds=(getopt loginctl systemctl)
+    local cmds=(getopt loginctl)
     local missing_cmds=()
 
     for cmd in "${cmds[@]}"; do
@@ -77,40 +77,34 @@ if [[ $# -eq 1 ]]; then
 fi
 
 # All supported choices
-all=(shutdown reboot suspend hibernate logout lockscreen)
+all=(shutdown reboot suspend logout)
 
 # By default, show all (i.e., just copy the array)
 show=("${all[@]}")
 
 declare -A texts
-texts[lockscreen]="lock screen"
 texts[switchuser]="switch user"
 texts[logout]="log out"
 texts[suspend]="suspend"
-texts[hibernate]="hibernate"
 texts[reboot]="reboot"
 texts[shutdown]="shut down"
 
 declare -A icons
-icons[lockscreen]="\Uf033e"
 icons[switchuser]="\Uf0019"
 icons[logout]="\Uf0343"
 icons[suspend]="\Uf04b2"
-icons[hibernate]="\Uf02ca"
 icons[reboot]="\Uf0709"
 icons[shutdown]="\Uf0425"
 icons[cancel]="\Uf0156"
 
 declare -A actions
-actions[lockscreen]="loginctl lock-session ${XDG_SESSION_ID-}"
 #actions[switchuser]="???"
 actions[logout]="loginctl terminate-session ${XDG_SESSION_ID-}"
-actions[suspend]="systemctl suspend"
-actions[hibernate]="systemctl hibernate"
-actions[reboot]="systemctl reboot"
-actions[shutdown]="systemctl poweroff"
+actions[suspend]="loginctl suspend"
+actions[reboot]="loginctl reboot"
+actions[shutdown]="loginctl poweroff"
 
-confirmations=(reboot shutdown logout hibernate)
+confirmations=(reboot shutdown logout)
 dryrun=false
 showsymbols=true
 showtext=true

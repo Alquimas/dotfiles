@@ -11,12 +11,51 @@ Usage: verify_dependencies.sh [-h]
 EOF
 }
 
+check_commands() {
+    local label=$1
+    shift
+    local cmd
+    local missing=()
+
+    for cmd in "$@"; do
+        if ! command -v "$cmd" >/dev/null 2>&1; then
+            missing+=("$cmd")
+        fi
+    done
+
+    if (( ${#missing[@]} > 0 )); then
+        printf 'FAIL: %s\n' "$label" >&2
+        printf '   - %s\n' "${missing[@]}" >&2
+        return 1
+    fi
+
+    printf 'OK: %s\n' "$label"
+}
+
 main() {
     local script_dir
     local checked=0
     local failed=0
 
+    check_commands 'verifier tools' dirname find sort || return 1
+
     script_dir=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+
+    checked=$((checked + 1))
+    if ! check_commands 'bootstrap commands' \
+        sudo pacman curl git readlink rc-status mktemp rm chmod cargo \
+        usermod whoami; then
+        failed=$((failed + 1))
+    fi
+    printf '\n'
+
+    checked=$((checked + 1))
+    if ! check_commands 'i3 and Polybar commands' \
+        i3 polybar dunst dunstctl nm-applet picom \
+        thunar rofi pactl xcolor xclip i3-nagbar i3-msg df sar awk; then
+        failed=$((failed + 1))
+    fi
+    printf '\n'
 
     while IFS= read -r script; do
         printf 'Checking %s\n' "${script#"${script_dir}"/}"

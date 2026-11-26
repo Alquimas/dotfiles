@@ -19,8 +19,6 @@ exec --no-startup-id $HOME/.config/scripts/i3/volume_deamon.sh
 exec --no-startup-id $HOME/.config/scripts/i3/brightness_deamon.sh
 exec --no-startup-id dunst
 exec --no-startup-id nm-applet
-exec --no-startup-id xautolock -time 5 -locker "light-locker"
-exec --no-startup-id xss-lock --transfer-sleep-lock -- light-locker
 exec_always --no-startup-id $HOME/.config/scripts/i3/set_wallpaper.sh
 exec_always --no-startup-id picom
 exec_always --no-startup-id $HOME/.config/scripts/polybar/launch.sh
